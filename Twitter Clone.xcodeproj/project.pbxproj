@@ -12,6 +12,7 @@
 		5DCD000429A66466008D5FAF /* ExploreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD000329A66466008D5FAF /* ExploreController.swift */; };
 		5DCD000829A6658C008D5FAF /* ConversationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD000729A6658C008D5FAF /* ConversationsController.swift */; };
 		5DCD000A29A6661D008D5FAF /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD000929A6661D008D5FAF /* NotificationsController.swift */; };
+		5DCD000C29A78CCA008D5FAF /* Layout Helper Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD000B29A78CCA008D5FAF /* Layout Helper Extensions.swift */; };
 		5DCDFFE529A65FB4008D5FAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCDFFE429A65FB4008D5FAF /* AppDelegate.swift */; };
 		5DCDFFE729A65FB4008D5FAF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCDFFE629A65FB4008D5FAF /* SceneDelegate.swift */; };
 		5DCDFFEC29A65FB4008D5FAF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DCDFFEA29A65FB4008D5FAF /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 		5DCD000329A66466008D5FAF /* ExploreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreController.swift; sourceTree = "<group>"; };
 		5DCD000729A6658C008D5FAF /* ConversationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsController.swift; sourceTree = "<group>"; };
 		5DCD000929A6661D008D5FAF /* NotificationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
+		5DCD000B29A78CCA008D5FAF /* Layout Helper Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Layout Helper Extensions.swift"; sourceTree = "<group>"; };
 		5DCDFFE129A65FB4008D5FAF /* Twitter Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Twitter Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DCDFFE429A65FB4008D5FAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5DCDFFE629A65FB4008D5FAF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 		5DCDFFF829A66096008D5FAF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				5DCD000B29A78CCA008D5FAF /* Layout Helper Extensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 				5DCD000A29A6661D008D5FAF /* NotificationsController.swift in Sources */,
 				5DCD000029A6619E008D5FAF /* MainTabController.swift in Sources */,
 				5DCD000229A6639E008D5FAF /* FeedController.swift in Sources */,
+				5DCD000C29A78CCA008D5FAF /* Layout Helper Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

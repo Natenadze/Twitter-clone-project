@@ -9,6 +9,7 @@ import UIKit
 
 class MainTabController: UITabBarController {
     
+    let actionButton = UIButton(type: .system)
     
     
     override func viewDidLoad() {
@@ -19,15 +20,15 @@ class MainTabController: UITabBarController {
     }
     
     // MARK: - Making tab bar visible (stackoverflow solution)
-//    func uiTabBarSetting() {
-//        if #available(iOS 15.0, *){
-//            let appearance = UITabBarAppearance()
-//            appearance.configureWithOpaqueBackground()
-//            appearance.backgroundColor = .systemGray5
-//            tabBar.standardAppearance = appearance
-//            tabBar.scrollEdgeAppearance = appearance
-//        }
-//    }
+    //    func uiTabBarSetting() {
+    //        if #available(iOS 15.0, *){
+    //            let appearance = UITabBarAppearance()
+    //            appearance.configureWithOpaqueBackground()
+    //            appearance.backgroundColor = .systemGray5
+    //            tabBar.standardAppearance = appearance
+    //            tabBar.scrollEdgeAppearance = appearance
+    //        }
+    //    }
     
     
     func configureViewControllers() {
@@ -71,16 +72,41 @@ class MainTabController: UITabBarController {
     
 }
 
+// MARK: - Actions
+extension MainTabController {
+    
+    @objc func actionButtonTapped() {
+        print("xXx")
+    }
+}
+
+
+
+
 // MARK: - Style & Layout
 
 extension MainTabController {
     
     func style() {
         tabBar.backgroundColor = .systemGray5
-
+        
+        // ActionButton
+        actionButton.translatesAutoresizingMaskIntoConstraints = false // Activates programmatic autoLayout
+        actionButton.tintColor = .white
+        actionButton.backgroundColor = .twitterBlue  // from extension
+        actionButton.layer.cornerRadius = 56/2
+        actionButton.setImage(UIImage(named: "new_tweet"), for: .normal)
+        actionButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
     }
     
     func layout() {
+        view.addSubview(actionButton)
+        
+        // using helper extension function
+        actionButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor,
+                            paddingBottom: 64, paddingRight: 16,
+                            width: 56, height: 56)
+        
         
     }
 }
