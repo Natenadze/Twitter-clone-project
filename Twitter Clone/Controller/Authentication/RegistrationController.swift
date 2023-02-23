@@ -1,13 +1,13 @@
 //
-//  ExploreController.swift
+//  RegistrationController.swift
 //  Twitter Clone
 //
-//  Created by Davit Natenadze on 22.02.23.
+//  Created by Davit Natenadze on 23.02.23.
 //
 
 import UIKit
 
-class ExploreController: UIViewController {
+class RegistrationController: UIViewController {
     
     let stackView = UIStackView()
     let label = UILabel()
@@ -17,22 +17,14 @@ class ExploreController: UIViewController {
         style()
         layout()
     }
-    
-    // MARK: - Helpers
-    
-    func configureUI () {
-        
-    }
 }
 
 // MARK: - Style & Layout
 
-extension ExploreController {
+extension RegistrationController {
     
     func style() {
-        view.backgroundColor = .secondarySystemBackground
-        
-        navigationItem.title = "Explore"
+        view.backgroundColor = .twitterBlue
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical

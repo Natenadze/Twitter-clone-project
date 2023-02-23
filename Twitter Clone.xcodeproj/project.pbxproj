@@ -13,6 +13,9 @@
 		5DCD000829A6658C008D5FAF /* ConversationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD000729A6658C008D5FAF /* ConversationsController.swift */; };
 		5DCD000A29A6661D008D5FAF /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD000929A6661D008D5FAF /* NotificationsController.swift */; };
 		5DCD000C29A78CCA008D5FAF /* Layout Helper Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD000B29A78CCA008D5FAF /* Layout Helper Extensions.swift */; };
+		5DCD000F29A7AB44008D5FAF /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD000E29A7AB44008D5FAF /* LoginController.swift */; };
+		5DCD001129A7AB92008D5FAF /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD001029A7AB92008D5FAF /* RegistrationController.swift */; };
+		5DCD001829A7BFBB008D5FAF /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD001729A7BFBB008D5FAF /* Utilities.swift */; };
 		5DCDFFE529A65FB4008D5FAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCDFFE429A65FB4008D5FAF /* AppDelegate.swift */; };
 		5DCDFFE729A65FB4008D5FAF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCDFFE629A65FB4008D5FAF /* SceneDelegate.swift */; };
 		5DCDFFEC29A65FB4008D5FAF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DCDFFEA29A65FB4008D5FAF /* Main.storyboard */; };
@@ -26,6 +29,9 @@
 		5DCD000729A6658C008D5FAF /* ConversationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsController.swift; sourceTree = "<group>"; };
 		5DCD000929A6661D008D5FAF /* NotificationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
 		5DCD000B29A78CCA008D5FAF /* Layout Helper Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Layout Helper Extensions.swift"; sourceTree = "<group>"; };
+		5DCD000E29A7AB44008D5FAF /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		5DCD001029A7AB92008D5FAF /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		5DCD001729A7BFBB008D5FAF /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		5DCDFFE129A65FB4008D5FAF /* Twitter Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Twitter Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DCDFFE429A65FB4008D5FAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5DCDFFE629A65FB4008D5FAF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +53,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5DCD000D29A7AB2A008D5FAF /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				5DCD000E29A7AB44008D5FAF /* LoginController.swift */,
+				5DCD001029A7AB92008D5FAF /* RegistrationController.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		5DCD001229A7ACCC008D5FAF /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				5DCDFFEA29A65FB4008D5FAF /* Main.storyboard */,
+				5DCDFFED29A65FB5008D5FAF /* Assets.xcassets */,
+				5DCDFFEF29A65FB5008D5FAF /* LaunchScreen.storyboard */,
+				5DCDFFF229A65FB5008D5FAF /* Info.plist */,
+			);
+			name = Files;
+			sourceTree = "<group>";
+		};
 		5DCDFFD829A65FB4008D5FAF = {
 			isa = PBXGroup;
 			children = (
@@ -66,18 +92,15 @@
 		5DCDFFE329A65FB4008D5FAF /* Twitter Clone */ = {
 			isa = PBXGroup;
 			children = (
+				5DCDFFE429A65FB4008D5FAF /* AppDelegate.swift */,
+				5DCDFFE629A65FB4008D5FAF /* SceneDelegate.swift */,
+				5DCD001229A7ACCC008D5FAF /* Files */,
 				5DCDFFFE29A660EE008D5FAF /* Model */,
 				5DCDFFFD29A660EB008D5FAF /* View */,
 				5DCDFFFC29A660EA008D5FAF /* ViewModel */,
 				5DCDFFFB29A660E7008D5FAF /* Controller */,
 				5DCDFFF929A660D6008D5FAF /* API */,
 				5DCDFFF829A66096008D5FAF /* Utils */,
-				5DCDFFE429A65FB4008D5FAF /* AppDelegate.swift */,
-				5DCDFFE629A65FB4008D5FAF /* SceneDelegate.swift */,
-				5DCDFFEA29A65FB4008D5FAF /* Main.storyboard */,
-				5DCDFFED29A65FB5008D5FAF /* Assets.xcassets */,
-				5DCDFFEF29A65FB5008D5FAF /* LaunchScreen.storyboard */,
-				5DCDFFF229A65FB5008D5FAF /* Info.plist */,
 			);
 			path = "Twitter Clone";
 			sourceTree = "<group>";
@@ -86,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				5DCD000B29A78CCA008D5FAF /* Layout Helper Extensions.swift */,
+				5DCD001729A7BFBB008D5FAF /* Utilities.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -100,6 +124,7 @@
 		5DCDFFFB29A660E7008D5FAF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				5DCD000D29A7AB2A008D5FAF /* Authentication */,
 				5DCDFFFF29A6619E008D5FAF /* MainTabController.swift */,
 				5DCD000129A6639E008D5FAF /* FeedController.swift */,
 				5DCD000329A66466008D5FAF /* ExploreController.swift */,
@@ -203,11 +228,14 @@
 			files = (
 				5DCD000829A6658C008D5FAF /* ConversationsController.swift in Sources */,
 				5DCDFFE529A65FB4008D5FAF /* AppDelegate.swift in Sources */,
+				5DCD001829A7BFBB008D5FAF /* Utilities.swift in Sources */,
 				5DCD000429A66466008D5FAF /* ExploreController.swift in Sources */,
 				5DCDFFE729A65FB4008D5FAF /* SceneDelegate.swift in Sources */,
+				5DCD000F29A7AB44008D5FAF /* LoginController.swift in Sources */,
 				5DCD000A29A6661D008D5FAF /* NotificationsController.swift in Sources */,
 				5DCD000029A6619E008D5FAF /* MainTabController.swift in Sources */,
 				5DCD000229A6639E008D5FAF /* FeedController.swift in Sources */,
+				5DCD001129A7AB92008D5FAF /* RegistrationController.swift in Sources */,
 				5DCD000C29A78CCA008D5FAF /* Layout Helper Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

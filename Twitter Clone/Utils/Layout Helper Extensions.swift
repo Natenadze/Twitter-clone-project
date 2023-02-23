@@ -56,7 +56,7 @@ extension UIView {
         translatesAutoresizingMaskIntoConstraints = false
         centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
-        if let topAnchor = topAnchor {
+        if let topAnchor {
             self.topAnchor.constraint(equalTo: topAnchor, constant: paddingTop!).isActive = true
         }
     }
