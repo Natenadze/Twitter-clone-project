@@ -17,7 +17,19 @@ class LoginController: UIViewController {
     private lazy var passwordContainerView = UIView()
     private var emailTextField = UITextField()
     private var passwordTextField = UITextField()
+    private let loginButton = UIButton(type: .system)
     
+    /*
+     Private let didn't work and there was an warning message about self (in target func)
+     lazy var was the solution
+     https://stackoverflow.com/questions/71560311/xcode-13-3-warning-self-refers-to-the-method-object-self-which-may-be-u
+     // The reason is self is not ready yet in phase 1 of object initialisation. Phase 1 is to set all stored properties, and only in phase 2, is possible access to self.
+     */
+    private lazy var dontHaveAccountButton: UIButton = {
+        let button = Utilities().attributedButton("Don't have account?", "  Sign up")
+        button.addTarget(self, action: #selector(handleShowSignUp), for: .touchUpInside)
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +71,7 @@ extension LoginController {
         
         // StackView
         stackView.axis = .vertical
-        stackView.spacing = 7
+        stackView.spacing = 20
         
         // email
         let emailImage = UIImage(named: "ic_mail_outline_white_2x-1")!
@@ -69,6 +81,16 @@ extension LoginController {
         let passwordImage = UIImage(named: "ic_lock_outline_white_2x")!
         passwordContainerView = Utilities().inputContainerView(withImage: passwordImage, textField: passwordTextField)
         
+        // login Button
+        loginButton.translatesAutoresizingMaskIntoConstraints = false
+        loginButton.setTitle("Log in", for: .normal)
+        loginButton.setTitleColor(.twitterBlue, for: .normal)
+        loginButton.backgroundColor = .white
+        loginButton.layer.cornerRadius = 5
+        loginButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        loginButton.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
+        
+        
     }
     
     func layout() {
@@ -76,14 +98,37 @@ extension LoginController {
         
         stackView.addArrangedSubview(emailContainerView)
         stackView.addArrangedSubview(passwordContainerView)
+        stackView.addArrangedSubview(loginButton)
         view.addSubview(stackView)
+        view.addSubview(dontHaveAccountButton)
+        
         
         // Logo
         logoImageView.centerX(inView: view, topAnchor: view.safeAreaLayoutGuide.topAnchor)
         logoImageView.setDimensions(width: 150, height: 150)
         
         // StackView
-        stackView.anchor(top: logoImageView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingLeft: 16, paddingRight: 16)
+        stackView.anchor(top: logoImageView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingLeft: 32, paddingRight: 32)
         
+        // loginButton
+        loginButton.heightAnchor.constraint(equalToConstant: 47).isActive = true
+        
+        // dontHaveAccountButton
+        dontHaveAccountButton.anchor(left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor)
+
     }
+}
+
+// MARK: - Actions
+
+extension LoginController {
+    
+    @objc func handleLogin() {
+        print("handle login here")
+    }
+    
+    @objc func handleShowSignUp() {
+        print("handle Show SignUp here")
+    }
+    
 }
