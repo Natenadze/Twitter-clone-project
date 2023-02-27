@@ -6,8 +6,7 @@
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseDatabase
+
 
 class RegistrationController: UIViewController {
     
@@ -169,25 +168,12 @@ extension RegistrationController {
         guard let fullname = fullNameTextField.text else { return }
         guard let username = userNameTextField.text else { return }
         
-        Auth.auth().createUser(withEmail: email, password: password) { result, error in
-            if let error {
-                print("DEBUG Error is \(error.localizedDescription)")
-                return
-            }
-            
-            guard let uid = result?.user.uid else { return }
-            
-            let values = ["email": email, "username": username, "fullname": fullname]
-            
-            
-            // Udemy: Section 3. Lesson - 15
-            let ref = Database.database().reference().child("users").child(uid)
-            
-            ref.updateChildValues(values) { error, ref in
-                print("DEBUG: Successfully updated user information.")
-            }
-            
+        let credentials = AuthCredentials(email: email, password: password, fullname: fullname, username: username, profileImage: profileImage)
+        
+        AuthService.shared.registerUser(credentials: credentials) { error, ref in
+            print("DEBUG: SIGN Up successful")
         }
+        
     }
     
     @objc func handleShowLogin() {

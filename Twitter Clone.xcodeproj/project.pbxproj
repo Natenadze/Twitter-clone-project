@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5DC0F4F429AD087C009F3A0E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5DC0F4F329AD087C009F3A0E /* GoogleService-Info.plist */; };
+		5DC0F4F729AD1BB6009F3A0E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC0F4F629AD1BB6009F3A0E /* Constants.swift */; };
+		5DC0F4FB29AD2B53009F3A0E /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC0F4FA29AD2B53009F3A0E /* AuthService.swift */; };
 		5DCD000029A6619E008D5FAF /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCDFFFF29A6619E008D5FAF /* MainTabController.swift */; };
 		5DCD000229A6639E008D5FAF /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD000129A6639E008D5FAF /* FeedController.swift */; };
 		5DCD000429A66466008D5FAF /* ExploreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD000329A66466008D5FAF /* ExploreController.swift */; };
@@ -28,6 +30,8 @@
 /* Begin PBXFileReference section */
 		5DC0F4F329AD087C009F3A0E /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		5DC0F4F529AD0D9E009F3A0E /* Twitter Clone.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Twitter Clone.entitlements"; sourceTree = "<group>"; };
+		5DC0F4F629AD1BB6009F3A0E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		5DC0F4FA29AD2B53009F3A0E /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		5DCD000129A6639E008D5FAF /* FeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
 		5DCD000329A66466008D5FAF /* ExploreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreController.swift; sourceTree = "<group>"; };
 		5DCD000729A6658C008D5FAF /* ConversationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsController.swift; sourceTree = "<group>"; };
@@ -131,6 +135,7 @@
 			children = (
 				5DCD000B29A78CCA008D5FAF /* Layout Helper Extensions.swift */,
 				5DCD001729A7BFBB008D5FAF /* Utilities.swift */,
+				5DC0F4F629AD1BB6009F3A0E /* Constants.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -138,6 +143,7 @@
 		5DCDFFF929A660D6008D5FAF /* API */ = {
 			isa = PBXGroup;
 			children = (
+				5DC0F4FA29AD2B53009F3A0E /* AuthService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -306,11 +312,13 @@
 				5DCD000429A66466008D5FAF /* ExploreController.swift in Sources */,
 				5DCDFFE729A65FB4008D5FAF /* SceneDelegate.swift in Sources */,
 				5DCD000F29A7AB44008D5FAF /* LoginController.swift in Sources */,
+				5DC0F4FB29AD2B53009F3A0E /* AuthService.swift in Sources */,
 				5DCD000A29A6661D008D5FAF /* NotificationsController.swift in Sources */,
 				5DCD000029A6619E008D5FAF /* MainTabController.swift in Sources */,
 				5DCD000229A6639E008D5FAF /* FeedController.swift in Sources */,
 				5DCD001129A7AB92008D5FAF /* RegistrationController.swift in Sources */,
 				5DCD000C29A78CCA008D5FAF /* Layout Helper Extensions.swift in Sources */,
+				5DC0F4F729AD1BB6009F3A0E /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
