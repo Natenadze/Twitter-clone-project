@@ -16,6 +16,7 @@
 		5DCD000F29A7AB44008D5FAF /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD000E29A7AB44008D5FAF /* LoginController.swift */; };
 		5DCD001129A7AB92008D5FAF /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD001029A7AB92008D5FAF /* RegistrationController.swift */; };
 		5DCD001829A7BFBB008D5FAF /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD001729A7BFBB008D5FAF /* Utilities.swift */; };
+		5DCD001B29ACDF34008D5FAF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5DCD001A29ACDF34008D5FAF /* GoogleService-Info.plist */; };
 		5DCDFFE529A65FB4008D5FAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCDFFE429A65FB4008D5FAF /* AppDelegate.swift */; };
 		5DCDFFE729A65FB4008D5FAF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCDFFE629A65FB4008D5FAF /* SceneDelegate.swift */; };
 		5DCDFFEC29A65FB4008D5FAF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DCDFFEA29A65FB4008D5FAF /* Main.storyboard */; };
@@ -32,6 +33,7 @@
 		5DCD000E29A7AB44008D5FAF /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		5DCD001029A7AB92008D5FAF /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		5DCD001729A7BFBB008D5FAF /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		5DCD001A29ACDF34008D5FAF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5DCDFFE129A65FB4008D5FAF /* Twitter Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Twitter Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DCDFFE429A65FB4008D5FAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5DCDFFE629A65FB4008D5FAF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				5DCDFFED29A65FB5008D5FAF /* Assets.xcassets */,
 				5DCDFFEF29A65FB5008D5FAF /* LaunchScreen.storyboard */,
 				5DCDFFF229A65FB5008D5FAF /* Info.plist */,
+				5DCD001A29ACDF34008D5FAF /* GoogleService-Info.plist */,
 			);
 			name = Files;
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5DCDFFF129A65FB5008D5FAF /* LaunchScreen.storyboard in Resources */,
+				5DCD001B29ACDF34008D5FAF /* GoogleService-Info.plist in Resources */,
 				5DCDFFEE29A65FB5008D5FAF /* Assets.xcassets in Resources */,
 				5DCDFFEC29A65FB4008D5FAF /* Main.storyboard in Resources */,
 			);

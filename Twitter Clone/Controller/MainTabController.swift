@@ -107,6 +107,5 @@ extension MainTabController {
                             paddingBottom: 64, paddingRight: 16,
                             width: 56, height: 56)
         
-        
     }
 }

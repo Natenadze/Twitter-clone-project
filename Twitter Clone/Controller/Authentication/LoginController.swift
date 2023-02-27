@@ -26,7 +26,7 @@ class LoginController: UIViewController {
      // The reason is self is not ready yet in phase 1 of object initialisation. Phase 1 is to set all stored properties, and only in phase 2, is possible access to self.
      */
     private lazy var dontHaveAccountButton: UIButton = {
-        let button = Utilities().attributedButton("Don't have account?", "  Sign up")
+        let button = Utilities().attributedButton("Don't have an account?", "  Sign up")
         button.addTarget(self, action: #selector(handleShowSignUp), for: .touchUpInside)
         return button
     }()
@@ -82,7 +82,6 @@ extension LoginController {
         passwordContainerView = Utilities().inputContainerView(withImage: passwordImage, textField: passwordTextField)
         
         // login Button
-        loginButton.translatesAutoresizingMaskIntoConstraints = false
         loginButton.setTitle("Log in", for: .normal)
         loginButton.setTitleColor(.twitterBlue, for: .normal)
         loginButton.backgroundColor = .white
@@ -128,7 +127,8 @@ extension LoginController {
     }
     
     @objc func handleShowSignUp() {
-        print("handle Show SignUp here")
+        let controller  = RegistrationController()
+        navigationController?.pushViewController(controller, animated: true)
     }
     
 }
