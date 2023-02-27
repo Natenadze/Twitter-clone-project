@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>608660903951-ml6oomj510kujnhoddsenpheq3d20a83.apps.googleusercontent.com</string>
+	<string>666948894142-cns5c3cgh9qdf5cidvs41llnngvabl2p.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.608660903951-ml6oomj510kujnhoddsenpheq3d20a83</string>
+	<string>com.googleusercontent.apps.666948894142-cns5c3cgh9qdf5cidvs41llnngvabl2p</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDlFgC8Ur4i5Q1QDZwamjVbyr_ubHSnhlQ</string>
+	<string>AIzaSyByy-8Ng_QJ-P-RYMIShWcyguqcpmtdeWo</string>
 	<key>GCM_SENDER_ID</key>
-	<string>608660903951</string>
+	<string>666948894142</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.nat.Twitter-Clone</string>
 	<key>PROJECT_ID</key>
-	<string>twitter-clone-7cef2</string>
+	<string>twitter-clone-d1f08</string>
 	<key>STORAGE_BUCKET</key>
-	<string>twitter-clone-7cef2.appspot.com</string>
+	<string>twitter-clone-d1f08.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:608660903951:ios:c8d0264d96bfd303ee6b7a</string>
+	<string>1:666948894142:ios:69d47f914e09772cbf8def</string>
+	<key>DATABASE_URL</key>
+	<string>https://twitter-clone-d1f08-default-rtdb.europe-west1.firebasedatabase.app</string>
 </dict>
 </plist>
