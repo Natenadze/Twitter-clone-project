@@ -64,6 +64,7 @@ extension RegistrationController {
         
         // email textField
         emailTextField = Utilities().textField(withPlaceholder: "Email")
+        emailTextField.autocapitalizationType = .none
         
         // password TextField
         passwordTextField = Utilities().textField(withPlaceholder: "Password")
@@ -163,7 +164,7 @@ extension RegistrationController {
             print("DEBUG: Please select the profile image..")
             return
         }
-        guard let email    = emailTextField.text else { return }
+        guard let email    = emailTextField.text    else { return }
         guard let password = passwordTextField.text else { return }
         guard let fullname = fullNameTextField.text else { return }
         guard let username = userNameTextField.text else { return }
@@ -171,7 +172,16 @@ extension RegistrationController {
         let credentials = AuthCredentials(email: email, password: password, fullname: fullname, username: username, profileImage: profileImage)
         
         AuthService.shared.registerUser(credentials: credentials) { error, ref in
-            print("DEBUG: SIGN Up successful")
+            
+            // to dismiss this screen and call ConfigureUI function in MainTabController
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                  let window = windowScene.windows.first(where: { $0.isKeyWindow }) else { return }
+            
+            guard let tab = window.rootViewController as? MainTabController else { return }
+            
+            tab.authenticateUserAndConfigureUI()
+            self.dismiss(animated: true)
+            //
         }
         
     }

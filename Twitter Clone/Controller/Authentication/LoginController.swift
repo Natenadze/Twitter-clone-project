@@ -123,7 +123,25 @@ extension LoginController {
 extension LoginController {
     
     @objc func handleLogin() {
-        print("handle login here")
+        guard let email    = emailTextField.text    else { return }
+        guard let password = passwordTextField.text else { return }
+        
+        AuthService.shared.logUserIn(email, password) { result, error in
+            if let error {
+                print("DEBUG: Error logging in \(error.localizedDescription)")
+                return
+            }
+            
+            // to dismiss this screen and call ConfigureUI function in MainTabController
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                  let window = windowScene.windows.first(where: { $0.isKeyWindow }) else { return }
+
+            guard let tab = window.rootViewController as? MainTabController else { return }
+            
+            tab.authenticateUserAndConfigureUI()
+            self.dismiss(animated: true)
+            //
+        }
     }
     
     @objc func handleShowSignUp() {

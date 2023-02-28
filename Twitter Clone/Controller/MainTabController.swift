@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class MainTabController: UITabBarController {
     
@@ -14,9 +15,9 @@ class MainTabController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureViewControllers()
-        style()
-        layout()
+        logUserOut()
+        view.backgroundColor = .twitterBlue // prevent black screen visibility at the start
+        authenticateUserAndConfigureUI()
     }
     
     // MARK: - Making tab bar visible (stackoverflow solution)
@@ -70,6 +71,31 @@ class MainTabController: UITabBarController {
     }
     
     
+}
+
+// MARK: - API
+extension MainTabController {
+    
+    func authenticateUserAndConfigureUI() {
+        if Auth.auth().currentUser == nil {
+            print("no user")
+            DispatchQueue.main.async {
+                let nav = UINavigationController(rootViewController: LoginController())
+                nav.modalPresentationStyle = .overFullScreen
+                self.present(nav, animated: true)
+            }
+        }else {
+            print("yes user")
+
+            configureViewControllers()
+            style()
+            layout()
+        }
+    }
+    
+    func logUserOut() {
+        try? Auth.auth().signOut()
+    }
 }
 
 // MARK: - Actions
