@@ -10,6 +10,10 @@
 		5DC0F4F429AD087C009F3A0E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5DC0F4F329AD087C009F3A0E /* GoogleService-Info.plist */; };
 		5DC0F4F729AD1BB6009F3A0E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC0F4F629AD1BB6009F3A0E /* Constants.swift */; };
 		5DC0F4FB29AD2B53009F3A0E /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC0F4FA29AD2B53009F3A0E /* AuthService.swift */; };
+		5DC0F4FE29ADEF6D009F3A0E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5DC0F4FD29ADEF6D009F3A0E /* FirebaseAuth */; };
+		5DC0F50029ADEF6D009F3A0E /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 5DC0F4FF29ADEF6D009F3A0E /* FirebaseDatabase */; };
+		5DC0F50229ADEF6D009F3A0E /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 5DC0F50129ADEF6D009F3A0E /* FirebaseFirestore */; };
+		5DC0F50429ADEF6D009F3A0E /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 5DC0F50329ADEF6D009F3A0E /* FirebaseStorage */; };
 		5DCD000029A6619E008D5FAF /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCDFFFF29A6619E008D5FAF /* MainTabController.swift */; };
 		5DCD000229A6639E008D5FAF /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD000129A6639E008D5FAF /* FeedController.swift */; };
 		5DCD000429A66466008D5FAF /* ExploreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD000329A66466008D5FAF /* ExploreController.swift */; };
@@ -24,7 +28,6 @@
 		5DCDFFEC29A65FB4008D5FAF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DCDFFEA29A65FB4008D5FAF /* Main.storyboard */; };
 		5DCDFFEE29A65FB5008D5FAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DCDFFED29A65FB5008D5FAF /* Assets.xcassets */; };
 		5DCDFFF129A65FB5008D5FAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DCDFFEF29A65FB5008D5FAF /* LaunchScreen.storyboard */; };
-		BA6F1310E8CCC7F3236A5DEF /* Pods_Twitter_Clone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85253B66CD7543997F1D5FB0 /* Pods_Twitter_Clone.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,9 +51,6 @@
 		5DCDFFF029A65FB5008D5FAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5DCDFFF229A65FB5008D5FAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5DCDFFFF29A6619E008D5FAF /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
-		824C4629933F8F717D676790 /* Pods-Twitter Clone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twitter Clone.debug.xcconfig"; path = "Target Support Files/Pods-Twitter Clone/Pods-Twitter Clone.debug.xcconfig"; sourceTree = "<group>"; };
-		85253B66CD7543997F1D5FB0 /* Pods_Twitter_Clone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Twitter_Clone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F04D834A2200CE2F041E9210 /* Pods-Twitter Clone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twitter Clone.release.xcconfig"; path = "Target Support Files/Pods-Twitter Clone/Pods-Twitter Clone.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,22 +58,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA6F1310E8CCC7F3236A5DEF /* Pods_Twitter_Clone.framework in Frameworks */,
+				5DC0F50029ADEF6D009F3A0E /* FirebaseDatabase in Frameworks */,
+				5DC0F50429ADEF6D009F3A0E /* FirebaseStorage in Frameworks */,
+				5DC0F4FE29ADEF6D009F3A0E /* FirebaseAuth in Frameworks */,
+				5DC0F50229ADEF6D009F3A0E /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		041E426AFB9B426501D3F722 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				824C4629933F8F717D676790 /* Pods-Twitter Clone.debug.xcconfig */,
-				F04D834A2200CE2F041E9210 /* Pods-Twitter Clone.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		5DCD000D29A7AB2A008D5FAF /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -100,8 +94,6 @@
 			children = (
 				5DCDFFE329A65FB4008D5FAF /* Twitter Clone */,
 				5DCDFFE229A65FB4008D5FAF /* Products */,
-				041E426AFB9B426501D3F722 /* Pods */,
-				749AF5FCD71CA0A6D72C40E9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -182,14 +174,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		749AF5FCD71CA0A6D72C40E9 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				85253B66CD7543997F1D5FB0 /* Pods_Twitter_Clone.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -197,17 +181,21 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5DCDFFF529A65FB5008D5FAF /* Build configuration list for PBXNativeTarget "Twitter Clone" */;
 			buildPhases = (
-				CBB4590E88692F7C23A1E3C3 /* [CP] Check Pods Manifest.lock */,
 				5DCDFFDD29A65FB4008D5FAF /* Sources */,
 				5DCDFFDE29A65FB4008D5FAF /* Frameworks */,
 				5DCDFFDF29A65FB4008D5FAF /* Resources */,
-				91F70B625E3360C34BA4FD84 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "Twitter Clone";
+			packageProductDependencies = (
+				5DC0F4FD29ADEF6D009F3A0E /* FirebaseAuth */,
+				5DC0F4FF29ADEF6D009F3A0E /* FirebaseDatabase */,
+				5DC0F50129ADEF6D009F3A0E /* FirebaseFirestore */,
+				5DC0F50329ADEF6D009F3A0E /* FirebaseStorage */,
+			);
 			productName = "Twitter Clone";
 			productReference = 5DCDFFE129A65FB4008D5FAF /* Twitter Clone.app */;
 			productType = "com.apple.product-type.application";
@@ -236,6 +224,9 @@
 				Base,
 			);
 			mainGroup = 5DCDFFD829A65FB4008D5FAF;
+			packageReferences = (
+				5DC0F4FC29ADEF6D009F3A0E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 5DCDFFE229A65FB4008D5FAF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -258,48 +249,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		91F70B625E3360C34BA4FD84 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Twitter Clone/Pods-Twitter Clone-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Twitter Clone/Pods-Twitter Clone-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Twitter Clone/Pods-Twitter Clone-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CBB4590E88692F7C23A1E3C3 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Twitter Clone-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5DCDFFDD29A65FB4008D5FAF /* Sources */ = {
@@ -460,7 +409,6 @@
 		};
 		5DCDFFF629A65FB5008D5FAF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 824C4629933F8F717D676790 /* Pods-Twitter Clone.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -492,7 +440,6 @@
 		};
 		5DCDFFF729A65FB5008D5FAF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F04D834A2200CE2F041E9210 /* Pods-Twitter Clone.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -544,6 +491,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5DC0F4FC29ADEF6D009F3A0E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5DC0F4FD29ADEF6D009F3A0E /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5DC0F4FC29ADEF6D009F3A0E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		5DC0F4FF29ADEF6D009F3A0E /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5DC0F4FC29ADEF6D009F3A0E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		5DC0F50129ADEF6D009F3A0E /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5DC0F4FC29ADEF6D009F3A0E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		5DC0F50329ADEF6D009F3A0E /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5DC0F4FC29ADEF6D009F3A0E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5DCDFFD929A65FB4008D5FAF /* Project object */;
 }
