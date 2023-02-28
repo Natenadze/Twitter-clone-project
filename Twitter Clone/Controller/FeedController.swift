@@ -7,27 +7,28 @@
 
 
 import UIKit
+import SDWebImage
+
 
 class FeedController: UIViewController {
     
-    let stackView = UIStackView()
-    let label = UILabel()
+    // MARK: - Properties
+    var user: User? {
+        didSet {
+            configureLeftBarButton()
+        }
+    }
+    
+    let iconImageView = UIImageView(image: UIImage(named: "twitter_logo_blue"))
+    let profileImageView = UIImageView(image: UIImage(named: "twitter_logo_blue"))
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
         style()
         layout()
     }
     
-    // MARK: - Helpers
-    
-    func configureUI () {
-        
-        let imageView = UIImageView(image: UIImage(named: "twitter_logo_blue"))
-        imageView.contentMode = .scaleAspectFit
-        navigationItem.titleView = imageView
-    }
 }
 
 
@@ -39,23 +40,32 @@ extension FeedController {
     func style() {
         view.backgroundColor = .secondarySystemBackground
         
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.spacing = 20
+        // profile Image
+        profileImageView.layer.cornerRadius = 16
+        profileImageView.layer.masksToBounds = true
         
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Welcome"
-        label.font = UIFont.preferredFont(forTextStyle: .title1)
+        // iconImageView 
+        iconImageView.contentMode = .scaleAspectFit
+        
     }
     
     func layout() {
         
-        stackView.addArrangedSubview(label)
-        view.addSubview(stackView)
+       
+        navigationItem.titleView = iconImageView
         
-        NSLayoutConstraint.activate([
-            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
+        // profile Image
+        profileImageView.setDimensions(width: 32, height: 32)
+       
+    }
+}
+
+// MARK: - Actions
+
+extension FeedController {
+    func configureLeftBarButton() {
+        guard let user else { return }
+        profileImageView.sd_setImage(with: user.profileImageUrl)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileImageView)
     }
 }

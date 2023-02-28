@@ -10,12 +10,24 @@ import FirebaseAuth
 
 class MainTabController: UITabBarController {
     
+    // MARK: - Properties
+    var user: User? {
+        // didSet guarantees that feed.user gets value right after this user gets its value
+        didSet {
+            // feed controller is embed in NavigationController itself
+            guard let nav = viewControllers?[0] as? UINavigationController else { return }
+            guard let feed = nav.viewControllers.first as? FeedController else { return }
+            
+            feed.user = user
+        }
+    }
+    
     let actionButton = UIButton(type: .system)
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        logUserOut()
+//        logUserOut()
         view.backgroundColor = .twitterBlue // prevent black screen visibility at the start
         authenticateUserAndConfigureUI()
     }
@@ -76,6 +88,12 @@ class MainTabController: UITabBarController {
 // MARK: - API
 extension MainTabController {
     
+    func fetchUser() {
+        UserService.shared.fetchUser { user in
+            self.user = user
+        }
+    }
+    
     func authenticateUserAndConfigureUI() {
         if Auth.auth().currentUser == nil {
             print("no user")
@@ -86,10 +104,10 @@ extension MainTabController {
             }
         }else {
             print("yes user")
-
-            configureViewControllers()
             style()
             layout()
+            configureViewControllers()
+            fetchUser()
         }
     }
     
