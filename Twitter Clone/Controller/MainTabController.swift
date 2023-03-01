@@ -43,6 +43,7 @@ class MainTabController: UITabBarController {
     //        }
     //    }
     
+    // MARK: - Helpers
     
     func configureViewControllers() {
         
@@ -73,12 +74,7 @@ class MainTabController: UITabBarController {
         
         let nav = UINavigationController(rootViewController: rootVC)
         nav.tabBarItem.image = image
-        
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .white
-        nav.navigationBar.standardAppearance = appearance
-        nav.navigationBar.scrollEdgeAppearance = nav.navigationBar.standardAppearance
+        nav.setStatusBar()
         return nav
     }
     
@@ -116,17 +112,6 @@ extension MainTabController {
     }
 }
 
-// MARK: - Actions
-extension MainTabController {
-    
-    @objc func actionButtonTapped() {
-        print("xXx")
-    }
-}
-
-
-
-
 // MARK: - Style & Layout
 
 extension MainTabController {
@@ -153,3 +138,21 @@ extension MainTabController {
         
     }
 }
+
+
+// MARK: - Actions
+extension MainTabController {
+    
+    @objc func actionButtonTapped() {
+        guard let user else { return }
+        let controller = UploadTweetController(user: user)
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        nav.setStatusBar()
+        present(nav, animated: true)
+    }
+}
+
+
+
+

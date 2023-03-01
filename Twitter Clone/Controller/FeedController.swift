@@ -20,7 +20,7 @@ class FeedController: UIViewController {
     }
     
     let iconImageView = UIImageView(image: UIImage(named: "twitter_logo_blue"))
-    let profileImageView = UIImageView(image: UIImage(named: "twitter_logo_blue"))
+    let profileImageView = UIImageView()
     
     
     override func viewDidLoad() {
@@ -51,7 +51,7 @@ extension FeedController {
     
     func layout() {
         
-       
+        iconImageView.setDimensions(width: 44, height: 44)  // explicit size to keep it bar centered
         navigationItem.titleView = iconImageView
         
         // profile Image
@@ -60,7 +60,7 @@ extension FeedController {
     }
 }
 
-// MARK: - Actions
+
 
 extension FeedController {
     func configureLeftBarButton() {
@@ -69,3 +69,5 @@ extension FeedController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileImageView)
     }
 }
+
+// MARK: - Actions
