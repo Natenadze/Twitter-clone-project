@@ -47,7 +47,7 @@ class MainTabController: UITabBarController {
     
     func configureViewControllers() {
         
-        let feed = FeedController()
+        let feed = FeedController(collectionViewLayout: UICollectionViewFlowLayout())
         let explore = ExploreController()
         let notifications = NotificationsController()
         let conversations = ConversationsController()

@@ -13,12 +13,11 @@ class UploadTweetController: UIViewController {
     // MARK: - properties
     
     private let actionButton = UIButton(type: .system)
-    private let profileImage = UIImageView()
-    private let postLabel = UILabel()
     private let user: User
     
-    let stackview = UIStackView()
+    private let stackview = UIStackView()
     private let captionTextview = CaptionTextView()
+    private let profileImage = UIImageView()
     
     
     // MARK: - ViewDidLoad -
@@ -51,7 +50,7 @@ class UploadTweetController: UIViewController {
 
 
 
-// MARK: - Style & Layout
+// MARK: - Style 
 
 extension UploadTweetController {
     
@@ -80,6 +79,8 @@ extension UploadTweetController {
         
         
     }
+    
+    // MARK: - Layout
     
     func layout() {
         stackview.addArrangedSubview(profileImage)

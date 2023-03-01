@@ -9,8 +9,10 @@
 import UIKit
 import SDWebImage
 
+private let reuseIdentifier = "TweetCell"
 
-class FeedController: UIViewController {
+
+class FeedController: UICollectionViewController {
     
     // MARK: - Properties
     var user: User? {
@@ -27,6 +29,23 @@ class FeedController: UIViewController {
         super.viewDidLoad()
         style()
         layout()
+        setupCollectionView()
+        fetchTweets()
+    }
+    
+    
+    // MARK: - setup functions
+    
+    func setupCollectionView() {
+        collectionView.register(TweetCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+    }
+    
+    // API
+    func fetchTweets() {
+        TweetService.shared.fetchTweets { tweets in
+//            print(tweets.count)
+            
+        }
     }
     
 }
@@ -70,4 +89,33 @@ extension FeedController {
     }
 }
 
+// MARK: - Collection View
+extension FeedController {
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        5
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! TweetCell
+        
+        return cell
+    }
+}
+
+extension FeedController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        CGSize(width: view.frame.width, height: 120)
+    }
+}
+
+
+
 // MARK: - Actions
+extension FeedController {
+    
+
+}
+
+
