@@ -40,6 +40,12 @@ class FeedController: UICollectionViewController {
     
     // MARK: - setup functions
     
+    func configureLeftBarButton() {
+        guard let user else { return }
+        profileImageView.sd_setImage(with: user.profileImageUrl)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileImageView)
+    }
+    
     func setupCollectionView() {
         collectionView.register(TweetCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
@@ -52,7 +58,6 @@ class FeedController: UICollectionViewController {
     }
     
 }
-
 
 
 // MARK: - Style & Layout
@@ -78,19 +83,9 @@ extension FeedController {
         
         // profile Image
         profileImageView.setDimensions(width: 32, height: 32)
-       
     }
 }
 
-
-
-extension FeedController {
-    func configureLeftBarButton() {
-        guard let user else { return }
-        profileImageView.sd_setImage(with: user.profileImageUrl)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileImageView)
-    }
-}
 
 // MARK: - Collection View
 extension FeedController {
@@ -101,7 +96,7 @@ extension FeedController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! TweetCell
-        
+        cell.delegate = self
         cell.tweet = tweets[indexPath.row]
         
         return cell
@@ -117,10 +112,14 @@ extension FeedController: UICollectionViewDelegateFlowLayout {
 
 
 
-// MARK: - Actions
-extension FeedController {
+
+extension FeedController: TweetCellDelegate {
     
-
+    func handleProfileImageTapped(_cell: TweetCell) {
+        // Transition to Collection View
+        let vc = ProfileController(collectionViewLayout: UICollectionViewFlowLayout())
+        navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
 }
-
-

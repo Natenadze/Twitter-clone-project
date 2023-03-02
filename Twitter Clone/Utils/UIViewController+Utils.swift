@@ -11,10 +11,12 @@ extension UIViewController {
     
     func setStatusBar() {
         let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithOpaqueBackground()
 //        navBarAppearance.configureWithTransparentBackground() // to hide Navigation Bar Line
         navBarAppearance.backgroundColor = .white
         UINavigationBar.appearance().standardAppearance = navBarAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
+        UINavigationBar.appearance().barTintColor = .white
     }
     
 }

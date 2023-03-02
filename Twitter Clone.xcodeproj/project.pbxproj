@@ -24,6 +24,8 @@
 		5DC0F53529AFA825009F3A0E /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC0F53429AFA825009F3A0E /* Tweet.swift */; };
 		5DC0F53929AFB7BD009F3A0E /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC0F53829AFB7BD009F3A0E /* TweetCell.swift */; };
 		5DC0F55D29B0D1D7009F3A0E /* TweetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC0F55C29B0D1D7009F3A0E /* TweetViewModel.swift */; };
+		5DC0F56129B0EE65009F3A0E /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC0F56029B0EE65009F3A0E /* ProfileController.swift */; };
+		5DC0F56329B0F61F009F3A0E /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC0F56229B0F61F009F3A0E /* ProfileHeader.swift */; };
 		5DCD000029A6619E008D5FAF /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCDFFFF29A6619E008D5FAF /* MainTabController.swift */; };
 		5DCD000229A6639E008D5FAF /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD000129A6639E008D5FAF /* FeedController.swift */; };
 		5DCD000429A66466008D5FAF /* ExploreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD000329A66466008D5FAF /* ExploreController.swift */; };
@@ -54,6 +56,8 @@
 		5DC0F53429AFA825009F3A0E /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		5DC0F53829AFB7BD009F3A0E /* TweetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
 		5DC0F55C29B0D1D7009F3A0E /* TweetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetViewModel.swift; sourceTree = "<group>"; };
+		5DC0F56029B0EE65009F3A0E /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		5DC0F56229B0F61F009F3A0E /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
 		5DCD000129A6639E008D5FAF /* FeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
 		5DCD000329A66466008D5FAF /* ExploreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreController.swift; sourceTree = "<group>"; };
 		5DCD000729A6658C008D5FAF /* ConversationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsController.swift; sourceTree = "<group>"; };
@@ -88,6 +92,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5DC0F55F29B0EE3D009F3A0E /* Tab Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5DCD000129A6639E008D5FAF /* FeedController.swift */,
+				5DCD000329A66466008D5FAF /* ExploreController.swift */,
+				5DCD000929A6661D008D5FAF /* NotificationsController.swift */,
+				5DCD000729A6658C008D5FAF /* ConversationsController.swift */,
+			);
+			path = "Tab Controllers";
+			sourceTree = "<group>";
+		};
 		5DCD000D29A7AB2A008D5FAF /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,11 +183,9 @@
 			children = (
 				5DCD000D29A7AB2A008D5FAF /* Authentication */,
 				5DCDFFFF29A6619E008D5FAF /* MainTabController.swift */,
-				5DCD000129A6639E008D5FAF /* FeedController.swift */,
-				5DCD000329A66466008D5FAF /* ExploreController.swift */,
-				5DCD000929A6661D008D5FAF /* NotificationsController.swift */,
-				5DCD000729A6658C008D5FAF /* ConversationsController.swift */,
+				5DC0F55F29B0EE3D009F3A0E /* Tab Controllers */,
 				5DC0F52C29AF4FCD009F3A0E /* UploadTweetController.swift */,
+				5DC0F56029B0EE65009F3A0E /* ProfileController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -190,6 +203,7 @@
 			children = (
 				5DC0F53029AF787D009F3A0E /* CaptionTextView.swift */,
 				5DC0F53829AFB7BD009F3A0E /* TweetCell.swift */,
+				5DC0F56229B0F61F009F3A0E /* ProfileHeader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -294,7 +308,9 @@
 				5DCD001829A7BFBB008D5FAF /* Utilities.swift in Sources */,
 				5DCD000429A66466008D5FAF /* ExploreController.swift in Sources */,
 				5DC0F53129AF787D009F3A0E /* CaptionTextView.swift in Sources */,
+				5DC0F56329B0F61F009F3A0E /* ProfileHeader.swift in Sources */,
 				5DCDFFE729A65FB4008D5FAF /* SceneDelegate.swift in Sources */,
+				5DC0F56129B0EE65009F3A0E /* ProfileController.swift in Sources */,
 				5DCD000F29A7AB44008D5FAF /* LoginController.swift in Sources */,
 				5DC0F4FB29AD2B53009F3A0E /* AuthService.swift in Sources */,
 				5DC0F53529AFA825009F3A0E /* Tweet.swift in Sources */,

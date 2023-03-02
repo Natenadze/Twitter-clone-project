@@ -7,18 +7,22 @@
 
 import UIKit
 
+protocol TweetCellDelegate: AnyObject {
+    func handleProfileImageTapped(_cell: TweetCell)
+}
+
 class TweetCell: UICollectionViewCell {
     
     // MARK: - properties
     
     var tweet: Tweet? {
-        didSet {
-            configure()
-        }
+        didSet { configure() }
     }
     
+    weak var delegate: TweetCellDelegate?
+    
     private let stackview = UIStackView()
-    private  let profileImageView = UIImageView()
+    private let profileImageView = UIImageView()
     private let captionLabel = UILabel()
     private let infoLabel = UILabel()
     
@@ -64,6 +68,10 @@ extension TweetCell {
         profileImageView.clipsToBounds = true
         profileImageView.layer.cornerRadius = 48/2
         profileImageView.backgroundColor = .twitterBlue
+        // gesture recognizer code
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleProfileImageTapped))
+        profileImageView.addGestureRecognizer(tap)
+        profileImageView.isUserInteractionEnabled = true // by default interaction is not enabled
         
         
         // caption Label
@@ -159,6 +167,11 @@ extension TweetCell {
 // MARK: -  Actions
 
 extension TweetCell {
+    
+    @objc  func handleProfileImageTapped() {
+        delegate?.handleProfileImageTapped(_cell: self)
+    }
+    
     @objc  func handleCommentTapped() {
         
     }
