@@ -21,6 +21,10 @@ class FeedController: UICollectionViewController {
         }
     }
     
+    private var tweets = [Tweet]() {
+        didSet { collectionView.reloadData() }
+    }
+    
     let iconImageView = UIImageView(image: UIImage(named: "twitter_logo_blue"))
     let profileImageView = UIImageView()
     
@@ -43,8 +47,7 @@ class FeedController: UICollectionViewController {
     // API
     func fetchTweets() {
         TweetService.shared.fetchTweets { tweets in
-//            print(tweets.count)
-            
+            self.tweets = tweets
         }
     }
     
@@ -93,11 +96,13 @@ extension FeedController {
 extension FeedController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+        tweets.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! TweetCell
+        
+        cell.tweet = tweets[indexPath.row]
         
         return cell
     }
@@ -106,7 +111,7 @@ extension FeedController {
 extension FeedController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: view.frame.width, height: 120)
+        CGSize(width: view.frame.width, height: 100)
     }
 }
 

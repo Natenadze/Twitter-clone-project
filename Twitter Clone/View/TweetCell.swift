@@ -11,6 +11,12 @@ class TweetCell: UICollectionViewCell {
     
     // MARK: - properties
     
+    var tweet: Tweet? {
+        didSet {
+            configure()
+        }
+    }
+    
     private let stackview = UIStackView()
     private  let profileImageView = UIImageView()
     private let captionLabel = UILabel()
@@ -36,6 +42,14 @@ class TweetCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure() {
+        guard let tweet else { return }
+        let ViewModel = TweetViewModel(tweet: tweet)
+        captionLabel.text = tweet.caption
+        infoLabel.attributedText = ViewModel.userInfoText
+        profileImageView.sd_setImage(with: ViewModel.profileImageUrl)
     }
 }
 
