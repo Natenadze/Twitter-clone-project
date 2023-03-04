@@ -7,9 +7,19 @@
 
 import UIKit
 
+protocol ProfileHeaderDelegate: AnyObject {
+    func handleDismissal()
+}
+
+
 class ProfileHeader: UICollectionReusableView {
     
     // MARK: - Properties
+    var user: User? {
+        didSet {
+            configure()
+        }
+    }
     
     private lazy var containerView = UIView()
     private lazy var backButton = UIButton(type: .system)
@@ -21,17 +31,45 @@ class ProfileHeader: UICollectionReusableView {
     private let fullNameLabel = UILabel()
     private let userNameLabel = UILabel()
     
+    private let followStackView = UIStackView()
+    private let followingLabel = UILabel()
+    private let followersLabel = UILabel()
+    private let filterBar = ProfileFilterView()
+    private let underlineView = UIView()
+    
+    weak var delegate: ProfileHeaderDelegate?
     
     // MARK: - Override
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        filterBar.delegate = self
         style()
         layout()
     }
     
+
+    
+ 
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - helper function
+    
+    func configure() {
+        guard let user else { return }
+        let viewModel = ProfileHeaderViewModel(user: user)
+        
+        profileImageView.sd_setImage(with: user.profileImageUrl)
+        editProfileFollowButton.setTitle(viewModel.actionButtonLabel, for: .normal)
+        
+        followingLabel.attributedText = viewModel.followingString
+        followersLabel.attributedText = viewModel.followersString
+        
+        fullNameLabel.text = user.fullname
+        userNameLabel.text = viewModel.userName
     }
 }
 
@@ -77,17 +115,35 @@ extension ProfileHeader {
         
         // fullname label
         fullNameLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        fullNameLabel.text = "James Hetfield"
+        
         
         // username label
         userNameLabel.font = UIFont.systemFont(ofSize: 16)
         userNameLabel.textColor = .lightGray
-        userNameLabel.text = "@endsOfSanity"
+        
         
         // bioLabel
         bioLabel.font = UIFont.systemFont(ofSize: 16)
         bioLabel.numberOfLines = 3
         bioLabel.text = "This is a user bio that will span more than one line for test purposes"
+        
+        // follow stack
+        followStackView.distribution = .fillEqually
+        followStackView.spacing = 8
+        followStackView.axis = .horizontal
+        
+        // following
+        let followingTap = UITapGestureRecognizer(target: followingLabel.self, action: #selector(handleFollowingTaped))
+        followingLabel.isUserInteractionEnabled = true
+        followingLabel.addGestureRecognizer(followingTap)
+        
+        // followers
+        let followersTap = UITapGestureRecognizer(target: followingLabel.self, action: #selector(handleFollowersTaped))
+        followersLabel.isUserInteractionEnabled = true
+        followersLabel.addGestureRecognizer(followersTap)
+        
+        // underline View
+        underlineView.backgroundColor = .twitterBlue
     }
     
     
@@ -98,10 +154,18 @@ extension ProfileHeader {
         addSubview(containerView)
         addSubview(profileImageView)
         addSubview(editProfileFollowButton)
+        
         userDetailStack.addArrangedSubview(fullNameLabel)
         userDetailStack.addArrangedSubview(userNameLabel)
         userDetailStack.addArrangedSubview(bioLabel)
         addSubview(userDetailStack)
+        
+        followStackView.addArrangedSubview(followingLabel)
+        followStackView.addArrangedSubview(followersLabel)
+        addSubview(followStackView)
+        
+        addSubview(filterBar)
+        addSubview(underlineView)
         
         // backButton
         backButton.anchor(top: topAnchor, left: leftAnchor, paddingTop: 42, paddingLeft: 16)
@@ -123,6 +187,15 @@ extension ProfileHeader {
                                right: rightAnchor, paddingTop: 8,
                                paddingLeft: 8, paddingRight: 8)
         
+        // follow stack
+        followStackView.anchor(top: userDetailStack.bottomAnchor, left: leftAnchor, paddingTop: 8, paddingLeft: 12)
+        
+        // filterBar
+        filterBar.anchor(left: leftAnchor, bottom: bottomAnchor, right:  rightAnchor, height: 50)
+        
+        // underline View
+        underlineView.anchor(left: leftAnchor,  bottom: bottomAnchor,
+                             width: frame.width / 3, height: 2)
         
     }
 }
@@ -134,11 +207,38 @@ extension ProfileHeader {
 extension ProfileHeader {
     
     @objc func handleDismissal() {
+        delegate?.handleDismissal()
         
     }
     
     @objc func handleEditProfileFollow() {
         
     }
+    
+    @objc func handleFollowingTaped() {
+        
+    }
+     
+    @objc func handleFollowersTaped() {
+        
+    }
+    
+}
+
+extension ProfileHeader: ProfileFilterViewDelegate {
+    
+    func filterView(_ view: ProfileFilterView, didSelect indexpath: IndexPath) {
+        
+        
+        
+        guard let cell = view.collectionView.cellForItem(at: indexpath) as? ProfileFilterCell else { return }
+        
+        let xPosition = cell.frame.origin.x
+        UIView.animate(withDuration: 0.3) {
+            self.underlineView.frame.origin.x = xPosition
+        }
+        
+    }
+    
     
 }

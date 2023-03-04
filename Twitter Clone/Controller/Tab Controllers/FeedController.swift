@@ -37,6 +37,14 @@ class FeedController: UICollectionViewController {
         fetchTweets()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // to keep navigation bar showing, when coming back from profile page
+        navigationController?.navigationBar.isHidden = false
+
+    }
+    
     
     // MARK: - setup functions
     
@@ -115,9 +123,10 @@ extension FeedController: UICollectionViewDelegateFlowLayout {
 
 extension FeedController: TweetCellDelegate {
     
-    func handleProfileImageTapped(_cell: TweetCell) {
+    func handleProfileImageTapped(_ cell: TweetCell) {
         // Transition to Collection View
-        let vc = ProfileController(collectionViewLayout: UICollectionViewFlowLayout())
+        guard let user = cell.tweet?.user else { return }
+        let vc = ProfileController(user: user)
         navigationController?.pushViewController(vc, animated: true)
         
     }
