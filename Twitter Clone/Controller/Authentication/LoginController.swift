@@ -137,7 +137,11 @@ extension LoginController {
             guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                   let window = windowScene.windows.first(where: { $0.isKeyWindow }) else { return }
 
-            guard let tab = window.rootViewController as? MainTabController else { return }
+            guard let tab = window.rootViewController as? MainTabController else {
+                print("no tab bar")
+                return
+                
+            }
             
             tab.authenticateUserAndConfigureUI()
             self.dismiss(animated: true)

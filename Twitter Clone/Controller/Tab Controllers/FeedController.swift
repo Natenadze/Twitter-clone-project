@@ -39,10 +39,8 @@ class FeedController: UICollectionViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         // to keep navigation bar showing, when coming back from profile page
         navigationController?.navigationBar.isHidden = false
-
     }
     
     

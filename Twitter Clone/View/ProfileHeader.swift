@@ -9,6 +9,7 @@ import UIKit
 
 protocol ProfileHeaderDelegate: AnyObject {
     func handleDismissal()
+    func HandleEditProfileFollow(_ header: ProfileHeader)
 }
 
 
@@ -24,7 +25,7 @@ class ProfileHeader: UICollectionReusableView {
     private lazy var containerView = UIView()
     private lazy var backButton = UIButton(type: .system)
     private lazy var profileImageView = UIImageView()
-    private lazy var editProfileFollowButton = UIButton(type: .system)
+    lazy var editProfileFollowButton = UIButton(type: .system)
     
     private let userDetailStack = UIStackView()
     private let bioLabel = UILabel()
@@ -212,7 +213,7 @@ extension ProfileHeader {
     }
     
     @objc func handleEditProfileFollow() {
-        
+        delegate?.HandleEditProfileFollow(self)
     }
     
     @objc func handleFollowingTaped() {
