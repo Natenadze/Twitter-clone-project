@@ -20,8 +20,6 @@ class TweetController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        style()
-        layout()
     }
     
     // MARK: - Init
@@ -42,26 +40,15 @@ class TweetController: UICollectionViewController {
     
 }
 
-// MARK: - Style & Layout
 
-extension TweetController {
-    
-    func style() {
-       
-    }
-    
-    func layout() {
-        
-       
-    }
-}
+// MARK: - Header
 
 extension TweetController {
     // Header
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerIdentifier, for: indexPath) as! TweetHeader
-        
+        header.tweet = tweet
         
         return header
     }
@@ -88,11 +75,16 @@ extension TweetController {
 extension TweetController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        CGSize(width: view.frame.width, height: 350)
+        
+        let viewModel = TweetViewModel(tweet: tweet)
+        let captionHeight = viewModel.size(forWidth: view.frame.width).height
+        
+      return  CGSize(width: view.frame.width, height: captionHeight + 260)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: view.frame.width, height: 100)
+        
+        return CGSize(width: view.frame.width, height: 100)
     }
   
 }

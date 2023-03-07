@@ -9,6 +9,7 @@ import UIKit
 
 protocol TweetCellDelegate: AnyObject {
     func handleProfileImageTapped(_ cell: TweetCell)
+    func handleReplyTapped(_ cell: TweetCell)
 }
 
 class TweetCell: UICollectionViewCell {
@@ -93,7 +94,6 @@ extension TweetCell {
         actionStackView.distribution = .fillEqually
         actionStackView.spacing = 72
         
-        
         // comment Btn
         commentButton.setImage(UIImage(named: "comment"), for: .normal)
         commentButton.tintColor = .darkGray
@@ -173,7 +173,7 @@ extension TweetCell {
     }
     
     @objc  func handleCommentTapped() {
-        
+        delegate?.handleReplyTapped(self)
     }
     
     @objc  func handleRetweetTapped() {

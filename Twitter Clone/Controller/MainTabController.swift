@@ -146,7 +146,7 @@ extension MainTabController {
     
     @objc func actionButtonTapped() {
         guard let user else { return }
-        let controller = UploadTweetController(user: user)
+        let controller = UploadTweetController(user: user, config: .tweet)
         let nav = UINavigationController(rootViewController: controller)
         nav.modalPresentationStyle = .fullScreen
         nav.setStatusBar()
