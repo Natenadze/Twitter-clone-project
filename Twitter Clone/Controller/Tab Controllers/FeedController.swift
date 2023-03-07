@@ -92,8 +92,19 @@ extension FeedController {
     }
 }
 
+// MARK: - CollectionView Delegate
 
-// MARK: - Collection View
+extension FeedController {
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        // Go to tweet VC
+        let controller = TweetController(tweet: tweets[indexPath.row])
+        navigationController?.pushViewController(controller, animated: true)
+    }
+}
+
+// MARK: - CollectionView DataSource
 extension FeedController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -109,6 +120,8 @@ extension FeedController {
     }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
+
 extension FeedController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -118,6 +131,7 @@ extension FeedController: UICollectionViewDelegateFlowLayout {
 
 
 
+// MARK: - Actions
 
 extension FeedController: TweetCellDelegate {
     

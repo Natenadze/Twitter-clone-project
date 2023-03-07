@@ -26,8 +26,6 @@ class ProfileController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        style()
-        layout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,19 +86,7 @@ class ProfileController: UICollectionViewController {
     
 }
 
-// MARK: - Style & Layout
 
-extension ProfileController {
-    
-    func style() {
-        
-    }
-    
-    func layout() {
-        
-        
-    }
-}
 
 // MARK: -  UICollectionView dataSource
 
