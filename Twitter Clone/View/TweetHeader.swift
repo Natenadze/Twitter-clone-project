@@ -204,7 +204,7 @@ extension TweetHeader {
         dividerBottom.anchor(left: leftAnchor, bottom: statsView.bottomAnchor, right: rightAnchor, height: 1)
         
         // actionStackView
-        actionStackView.anchor(top: dividerBottom.bottomAnchor, left: profileImageView.rightAnchor, paddingTop: 4)
+        actionStackView.anchor(top: statsView.bottomAnchor, left: profileImageView.rightAnchor, paddingTop: 4)
     }
 }
 

@@ -15,11 +15,20 @@ class TweetController: UICollectionViewController {
     // MARK: - Properties
     
     private let tweet: Tweet
+    private var replies = [Tweet]() {
+        
+        didSet {
+            print("replies count is: \(replies.count)")
+            collectionView.reloadData()
+            
+        }
+    }
     
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        fetchReplies()
     }
     
     // MARK: - Init
@@ -32,10 +41,19 @@ class TweetController: UICollectionViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+  
+    
     // MARK: - Setup
     func setup() {
         collectionView.register(TweetHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
         collectionView.register(TweetCell.self, forCellWithReuseIdentifier: cellReuseIdentifier)
+    }
+    
+    // MARK: - API
+    func fetchReplies() {
+        TweetService.shared.fetchReplies(forTweet: tweet) { replies in
+            self.replies = replies
+        }
     }
     
 }
@@ -59,13 +77,13 @@ extension TweetController {
 extension TweetController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        3
+        replies.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath) as! TweetCell
         
-        
+        cell.tweet = replies[indexPath.row]
         return cell
     }
 }

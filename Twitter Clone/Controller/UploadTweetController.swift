@@ -143,7 +143,7 @@ extension UploadTweetController {
     
      @objc func handleUploadTweet() {
          guard let caption = captionTextview.text else { return }
-         TweetService.shared.uploadTweet(caption: caption) { error, ref in
+         TweetService.shared.uploadTweet(caption: caption, type: config) { error, ref in
              if let error {
                  print("DEBUG: failed to upload tweet with error: \(error.localizedDescription)")
                  return
