@@ -76,12 +76,13 @@ extension TweetCell {
         
         
         // caption Label
-        captionLabel.font = UIFont.systemFont(ofSize: 12)
+        captionLabel.font = UIFont.systemFont(ofSize: 14)
         captionLabel.numberOfLines = 0
         captionLabel.text = "Some test caption"
+        captionLabel.minimumScaleFactor = 13
         
         // infoLabel
-        infoLabel.font = UIFont.systemFont(ofSize: 12)
+        infoLabel.font = UIFont.systemFont(ofSize: 14)
         
         // stackview
         stackview.axis = .vertical
