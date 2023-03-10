@@ -10,12 +10,14 @@ import UIKit
 protocol TweetCellDelegate: AnyObject {
     func handleProfileImageTapped(_ cell: TweetCell)
     func handleReplyTapped(_ cell: TweetCell)
+    func handleLikeTapped(_ cell: TweetCell)
 }
 
 class TweetCell: UICollectionViewCell {
     
     // MARK: - properties
     
+    // anytime tweet property changes, it calls configure and refreshes data
     var tweet: Tweet? {
         didSet { configure() }
     }
@@ -51,10 +53,12 @@ class TweetCell: UICollectionViewCell {
     
     func configure() {
         guard let tweet else { return }
-        let ViewModel = TweetViewModel(tweet: tweet)
+        let viewModel = TweetViewModel(tweet: tweet)
         captionLabel.text = tweet.caption
-        infoLabel.attributedText = ViewModel.userInfoText
-        profileImageView.sd_setImage(with: ViewModel.profileImageUrl)
+        infoLabel.attributedText = viewModel.userInfoText
+        profileImageView.sd_setImage(with: viewModel.profileImageUrl)
+        likeButton.tintColor = viewModel.likeButtonTintColor
+        likeButton.setImage(viewModel.likeButtonImage, for: .normal)
     }
 }
 
@@ -108,12 +112,12 @@ extension TweetCell {
         // Like Btn
         likeButton.setImage(UIImage(named: "like"), for: .normal)
         likeButton.tintColor = .darkGray
-        likeButton.addTarget(self, action: #selector(handleCommentTapped), for: .touchUpInside)
+        likeButton.addTarget(self, action: #selector(handleLikeTapped), for: .touchUpInside)
         
         // share Btn
         shareButton.setImage(UIImage(named: "share"), for: .normal)
         shareButton.tintColor = .darkGray
-        shareButton.addTarget(self, action: #selector(handleCommentTapped), for: .touchUpInside)
+        shareButton.addTarget(self, action: #selector(handleShareTapped), for: .touchUpInside)
         
         
         //underlineView
@@ -182,7 +186,7 @@ extension TweetCell {
     }
     
     @objc  func handleLikeTapped() {
-        
+        delegate?.handleLikeTapped(self)
     }
     
     @objc  func handleShareTapped() {

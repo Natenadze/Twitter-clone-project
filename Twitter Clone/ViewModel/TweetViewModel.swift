@@ -44,7 +44,6 @@ struct TweetViewModel {
     }
     
     var userInfoText: NSAttributedString {
-        
         // this is mutable cause we're appending another string later
         let title = NSMutableAttributedString(string: user.fullname,
                                               attributes: [.font: UIFont.boldSystemFont(ofSize: 14)])
@@ -54,9 +53,16 @@ struct TweetViewModel {
         
         title.append(NSAttributedString(string: " ∙ \(timestamp ?? "")",
                                         attributes: [.font: UIFont.systemFont(ofSize: 14), .foregroundColor: UIColor.lightGray]))
-        
         return title
-        
+    }
+    
+    var likeButtonTintColor: UIColor {
+        tweet.didLike ? .red : . lightGray
+    }
+     
+    var likeButtonImage: UIImage {
+        let imageName = tweet.didLike ? "like_filled" : "like"
+        return UIImage(named: imageName)!
     }
     
     init(tweet: Tweet) {
