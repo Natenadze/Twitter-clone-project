@@ -57,7 +57,7 @@ class ProfileFilterView: UIView {
 extension ProfileFilterView {
     
     func style() {
-        // twets are selected by default
+        // tweets are selected by default
         collectionView.selectItem(at: selectedIndexPath, animated: true, scrollPosition: .left)
     }
     

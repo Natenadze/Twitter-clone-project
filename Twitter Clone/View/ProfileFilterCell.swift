@@ -50,7 +50,6 @@ extension ProfileFilterCell {
         
         titleLabel.textColor = .lightGray
         titleLabel.font = UIFont.systemFont(ofSize: 14)
-        titleLabel.text = "muraba"
     }
     
     func layout() {
