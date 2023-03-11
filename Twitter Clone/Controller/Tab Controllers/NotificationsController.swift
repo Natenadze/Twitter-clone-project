@@ -7,11 +7,15 @@
 
 import UIKit
 
-class NotificationsController: UIViewController {
+private let reuseIdentifier = "NotificationCell"
+
+class NotificationsController: UITableViewController {
     
-    let stackView = UIStackView()
-    let label = UILabel()
+  // MARK: - Properties
     
+    private var notifications = [Notification]()
+    
+    // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         style()
@@ -20,10 +24,7 @@ class NotificationsController: UIViewController {
     
     // MARK: - Helpers
     
-    func configureUI () {
-        
-       
-    }
+  
 }
 
 // MARK: - Style & Layout
@@ -34,24 +35,25 @@ extension NotificationsController {
         view.backgroundColor = .secondarySystemBackground
         
         navigationItem.title = "Notifications"
-        
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.spacing = 20
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Welcome"
-        label.font = UIFont.preferredFont(forTextStyle: .title1)
+        tableView.register(NotificationCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.separatorStyle = .none
+    
     }
     
     func layout() {
+        tableView.rowHeight = 60
+    }
+}
+
+
+extension NotificationsController {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        3 //notifications.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! NotificationCell
         
-        stackView.addArrangedSubview(label)
-        view.addSubview(stackView)
-        
-        NSLayoutConstraint.activate([
-            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
+        return cell
     }
 }

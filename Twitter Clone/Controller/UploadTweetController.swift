@@ -148,8 +148,13 @@ extension UploadTweetController {
                  print("DEBUG: failed to upload tweet with error: \(error.localizedDescription)")
                  return
              }
-             self.dismiss(animated: true)
+             // if reply == config
+             // if we are in a reply configuration and we have access to the tweet
+             if case .reply(let tweet) = self.config {
+                 NotificationService.shared.uploadNotification(type: .reply, tweet: tweet)
+             }
              
+             self.dismiss(animated: true)
          }
     }
     

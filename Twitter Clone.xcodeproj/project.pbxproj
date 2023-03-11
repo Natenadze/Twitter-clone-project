@@ -37,6 +37,8 @@
 		5DC0F57629BB3EAB009F3A0E /* ActionSheetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC0F57529BB3EAB009F3A0E /* ActionSheetCell.swift */; };
 		5DC0F57829BB4978009F3A0E /* ActionSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC0F57729BB4978009F3A0E /* ActionSheetViewModel.swift */; };
 		5DC0F57A29BC96FA009F3A0E /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC0F57929BC96FA009F3A0E /* Notification.swift */; };
+		5DC0F57C29BC99DF009F3A0E /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC0F57B29BC99DF009F3A0E /* NotificationService.swift */; };
+		5DC0F57E29BCA48B009F3A0E /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC0F57D29BCA48B009F3A0E /* NotificationCell.swift */; };
 		5DCD000029A6619E008D5FAF /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCDFFFF29A6619E008D5FAF /* MainTabController.swift */; };
 		5DCD000229A6639E008D5FAF /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD000129A6639E008D5FAF /* FeedController.swift */; };
 		5DCD000429A66466008D5FAF /* ExploreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD000329A66466008D5FAF /* ExploreController.swift */; };
@@ -80,6 +82,8 @@
 		5DC0F57529BB3EAB009F3A0E /* ActionSheetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetCell.swift; sourceTree = "<group>"; };
 		5DC0F57729BB4978009F3A0E /* ActionSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetViewModel.swift; sourceTree = "<group>"; };
 		5DC0F57929BC96FA009F3A0E /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		5DC0F57B29BC99DF009F3A0E /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		5DC0F57D29BCA48B009F3A0E /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		5DCD000129A6639E008D5FAF /* FeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
 		5DCD000329A66466008D5FAF /* ExploreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreController.swift; sourceTree = "<group>"; };
 		5DCD000729A6658C008D5FAF /* ConversationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsController.swift; sourceTree = "<group>"; };
@@ -205,6 +209,7 @@
 				5DC0F4FA29AD2B53009F3A0E /* AuthService.swift */,
 				5DC0F50529AE2D6C009F3A0E /* UserService.swift */,
 				5DC0F53229AF8174009F3A0E /* TweetService.swift */,
+				5DC0F57B29BC99DF009F3A0E /* NotificationService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -244,6 +249,7 @@
 				5DC0F53829AFB7BD009F3A0E /* TweetCell.swift */,
 				5DC0F56E29B73D05009F3A0E /* TweetHeader.swift */,
 				5DC0F57529BB3EAB009F3A0E /* ActionSheetCell.swift */,
+				5DC0F57D29BCA48B009F3A0E /* NotificationCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -345,6 +351,7 @@
 				5DC0F53329AF8174009F3A0E /* TweetService.swift in Sources */,
 				5DCD000829A6658C008D5FAF /* ConversationsController.swift in Sources */,
 				5DC0F52F29AF5DE5009F3A0E /* UIViewController+Utils.swift in Sources */,
+				5DC0F57C29BC99DF009F3A0E /* NotificationService.swift in Sources */,
 				5DCDFFE529A65FB4008D5FAF /* AppDelegate.swift in Sources */,
 				5DCD001829A7BFBB008D5FAF /* Utilities.swift in Sources */,
 				5DCD000429A66466008D5FAF /* ExploreController.swift in Sources */,
@@ -374,6 +381,7 @@
 				5DC0F57329B8D924009F3A0E /* ActionSheetLauncher.swift in Sources */,
 				5DC0F57A29BC96FA009F3A0E /* Notification.swift in Sources */,
 				5DCD000C29A78CCA008D5FAF /* Layout Helper Extensions.swift in Sources */,
+				5DC0F57E29BCA48B009F3A0E /* NotificationCell.swift in Sources */,
 				5DC0F57829BB4978009F3A0E /* ActionSheetViewModel.swift in Sources */,
 				5DC0F4F729AD1BB6009F3A0E /* Constants.swift in Sources */,
 			);

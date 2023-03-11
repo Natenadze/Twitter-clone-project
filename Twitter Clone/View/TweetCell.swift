@@ -7,11 +7,14 @@
 
 import UIKit
 
+// MARK: - Protocol
 protocol TweetCellDelegate: AnyObject {
     func handleProfileImageTapped(_ cell: TweetCell)
     func handleReplyTapped(_ cell: TweetCell)
     func handleLikeTapped(_ cell: TweetCell)
 }
+
+// MARK: - Class
 
 class TweetCell: UICollectionViewCell {
     
