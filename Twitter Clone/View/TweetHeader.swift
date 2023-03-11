@@ -92,6 +92,8 @@ class TweetHeader: UICollectionReusableView {
         dateLabel.text = viewModel.headerTimeStamp
         retweetsLabel.attributedText = viewModel.retweetsAttributedString
         likesLabel.attributedText = viewModel.likesAttributedString
+        likeButton.setImage(viewModel.likeButtonImage, for: .normal)
+        likeButton.tintColor = viewModel.likeButtonTintColor
     }
     
 }
@@ -228,18 +230,18 @@ extension TweetHeader {
     }
     
     @objc  func handleCommentTapped() {
-        print("any button")
+        
     }
     
     @objc  func handleRetweetTapped() {
-        print("any button")
+        
     }
     
     @objc  func handleLikeTapped() {
-        print("any button")
+        
     }
     
     @objc  func handleShareTapped() {
-        print("any button")
+        
     }
 }
