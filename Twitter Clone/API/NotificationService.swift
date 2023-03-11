@@ -29,6 +29,23 @@ struct NotificationService {
             }
             
         }
+    }
+    
+    func fetchNotifications(completion: @escaping([Notification]) -> Void) {
+        var notifications = [Notification]()
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        REF_NOTIFICATIONS.child(uid).observe(.childAdded) { snapshot in
+            guard let dictionary = snapshot.value as? [String: AnyObject] else { return }
+            guard let uid = dictionary["uid"] as? String else { return }
+            
+            UserService.shared.fetchUser(uid: uid) { user in
+                let notificaiton = Notification(user: user, dictionary: dictionary)
+                notifications.append(notificaiton)
+                completion(notifications)
+            }
+            
+        }
         
     }
 }

@@ -16,6 +16,10 @@ class NotificationCell: UITableViewCell {
     private let notificationLabel = UILabel()
     private let stackView = UIStackView()
     
+    var notification: Notification? {
+        didSet { configure() }
+    }
+    
     
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -28,7 +32,18 @@ class NotificationCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Helpers
     
+    func configure() {
+        guard let notification else { return }
+        
+        let viewModel = NotificationViewModel(notification: notification)
+        
+        // update properties
+        profileImageView.sd_setImage(with: viewModel.profileImageUrl)
+        notificationLabel.attributedText = viewModel.notifText
+        
+    }
     
 }
 
@@ -40,7 +55,7 @@ extension NotificationCell {
         // profile Image
         profileImageView.contentMode = .scaleToFill
         profileImageView.clipsToBounds = true
-        profileImageView.layer.cornerRadius = 48/2
+        profileImageView.layer.cornerRadius = 40/2
         profileImageView.backgroundColor = .twitterBlue
         // gesture recognizer code
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleProfileImageTapped))
@@ -54,7 +69,7 @@ extension NotificationCell {
         
         // stackView
         stackView.spacing = 8
-        stackView.alignment = .leading
+        stackView.alignment = .center  // no need of: notificationLabel.centerY(inView: self)
     }
     
     func layout() {
@@ -64,10 +79,7 @@ extension NotificationCell {
         
         
         // image
-        profileImageView.setDimensions(width: 48, height: 48)
-        
-        // label
-        notificationLabel.centerY(inView: self)
+        profileImageView.setDimensions(width: 40, height: 40)
         
         // stackView
         stackView.centerY(inView: self)

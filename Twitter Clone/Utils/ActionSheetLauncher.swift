@@ -76,7 +76,7 @@ class ActionSheetLauncher: NSObject  {
     }
     
     func show() {
-        // MARK: - DEPRECATED
+        //  DEPRECATED
 //        guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else { return }
         
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,

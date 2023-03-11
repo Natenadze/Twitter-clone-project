@@ -10,6 +10,9 @@ import UIKit
 
 class LoginController: UIViewController {
     
+    
+    // MARK: - Properties
+    
     private let logoImageView = UIImageView()
     let stackView = UIStackView()
     
@@ -31,8 +34,12 @@ class LoginController: UIViewController {
         return button
     }()
     
+    
+// MARK: - ViewDidLoad
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         style()
         layout()
     }
