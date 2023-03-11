@@ -62,6 +62,20 @@ struct TweetService {
         }
     }
     
+    // Fetch single tweet
+    func fetchSingleTweet(withTweetID tweetID: String, completion: @escaping(Tweet) -> Void) {
+        REF_TWEETS.observe(.childAdded) { snapshot in
+            guard let dictionary = snapshot.value as? [String: Any] else { return }
+            guard let uid = dictionary["uid"] as? String else { return }
+            let tweetID = snapshot.key
+            
+            UserService.shared.fetchUser(uid: uid) { user in
+                let tweet = Tweet(user: user, tweetID: tweetID, dictionary: dictionary)
+                completion(tweet)
+            }
+        }
+    }
+    
     // fetch certain users tweets
     func fetchTweets(forUser user: User, completion: @escaping([Tweet]) -> Void) {
         var tweets = [Tweet]()
@@ -69,19 +83,28 @@ struct TweetService {
         REF_USER_TWEETS.child(user.uid).observe(.childAdded) { snapshot in
             let tweetID = snapshot.key
             print(snapshot.value!)  // აქ dictionary მოაქვს ჩვეულებრივ
-            REF_TWEETS.child(tweetID).observeSingleEvent(of: .value) { snapshot in
-                guard let dictionary = snapshot.value as? [String: Any] else { return }
-                guard let uid = dictionary["uid"] as? String else { return }
-                
-                UserService.shared.fetchUser(uid: uid) { user in
-                    let tweet = Tweet(user: user, tweetID: tweetID, dictionary: dictionary)
-                    tweets.append(tweet)
-                    completion(tweets)
-                }
+            
+            // refactored code
+            self.fetchSingleTweet(withTweetID: tweetID) { tweet in
+                tweets.append(tweet)
+                completion(tweets)
             }
+            
+            // initial code
+//            REF_TWEETS.child(tweetID).observeSingleEvent(of: .value) { snapshot in
+//                guard let dictionary = snapshot.value as? [String: Any] else { return }
+//                guard let uid = dictionary["uid"] as? String else { return }
+//
+//                UserService.shared.fetchUser(uid: uid) { user in
+//                    let tweet = Tweet(user: user, tweetID: tweetID, dictionary: dictionary)
+//                    tweets.append(tweet)
+//                    completion(tweets)
+//                }
+//            }
         }
     }
     
+    // Fetch Replies
     func fetchReplies(forTweet tweet: Tweet, completion: @escaping([Tweet]) -> Void) {
         var tweets = [Tweet]()
         

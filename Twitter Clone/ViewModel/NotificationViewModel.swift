@@ -14,6 +14,7 @@ struct NotificationViewModel {
     private let type: NotificationType
     private let user: User
     
+    // timestamp
     var timestampString: String? {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.second, .minute, .hour, .day, .weekOfMonth]
@@ -23,6 +24,7 @@ struct NotificationViewModel {
         return formatter.string(from: notification.timestamp, to: now)
     }
     
+    // Notification Message
     var notifMessage: String {
         switch type {
         
@@ -48,9 +50,13 @@ struct NotificationViewModel {
         return attributedText
     }
     
+    // Profile Image
     var profileImageUrl: URL? {
         user.profileImageUrl
     }
+    
+    
+    // MARK: - INIT
     
     init(notification: Notification) {
         self.notification = notification

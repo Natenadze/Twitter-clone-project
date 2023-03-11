@@ -7,7 +7,9 @@
 
 import UIKit
 
-
+protocol NotificationCellDelegate: AnyObject {
+    func didTapProfileImage(_ cell: NotificationCell)
+}
 
 class NotificationCell: UITableViewCell {
     
@@ -15,6 +17,8 @@ class NotificationCell: UITableViewCell {
     private let profileImageView = UIImageView()
     private let notificationLabel = UILabel()
     private let stackView = UIStackView()
+    
+    weak var delegate: NotificationCellDelegate?
     
     var notification: Notification? {
         didSet { configure() }
@@ -75,8 +79,14 @@ extension NotificationCell {
     func layout() {
         stackView.addArrangedSubview(profileImageView)
         stackView.addArrangedSubview(notificationLabel)
-        addSubview(stackView)
         
+        // MARK: - IMPORTANT
+        // make sure to add this way: contentView.addSubview
+        
+        /*
+         "The content view of a UITableViewCell object is the default superview for content that the cell displays. If you want to customize cells by simply adding additional views, you should add them to the content view so they position appropriately as the cell transitions in to and out of editing mode."
+         */
+        contentView.addSubview(stackView)
         
         // image
         profileImageView.setDimensions(width: 40, height: 40)
@@ -91,6 +101,6 @@ extension NotificationCell {
 // MARK: - Actions
 extension NotificationCell {
     @objc func handleProfileImageTapped() {
-        
+        delegate?.didTapProfileImage(self)
     }
 }
