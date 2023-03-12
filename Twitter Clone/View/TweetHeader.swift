@@ -35,6 +35,7 @@ class TweetHeader: UICollectionReusableView {
     private let retweetsLabel = UILabel()
     private let likesLabel = UILabel()
     
+    
     private let actionStackView = UIStackView()
     private lazy var commentButton: UIButton = {
         let button = createButton(withImageName: "comment", target: self, action: #selector(handleCommentTapped))
@@ -122,12 +123,10 @@ extension TweetHeader {
         
         // fullname label
         fullNameLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        fullNameLabel.text = "mariaana"
         
         // username label
         userNameLabel.font = UIFont.systemFont(ofSize: 16)
         userNameLabel.textColor = .lightGray
-        userNameLabel.text = "gurami"
         
         // optionsButton
         optionsButton.tintColor = .lightGray
@@ -137,7 +136,6 @@ extension TweetHeader {
         // caption Label
         captionLabel.font = UIFont.systemFont(ofSize: 20)
         captionLabel.numberOfLines = 0
-        captionLabel.text = "Some test caption"
         
         // dateLabel
         dateLabel.textColor = .lightGray

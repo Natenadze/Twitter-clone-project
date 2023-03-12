@@ -10,6 +10,7 @@ import UIKit
 protocol ProfileHeaderDelegate: AnyObject {
     func handleDismissal()
     func HandleEditProfileFollow(_ header: ProfileHeader)
+    func didSelect(filter: ProfileFilterOptions)
 }
 
 
@@ -36,7 +37,6 @@ class ProfileHeader: UICollectionReusableView {
     private let followingLabel = UILabel()
     private let followersLabel = UILabel()
     private let filterBar = ProfileFilterView()
-    private let underlineView = UIView()
     
     weak var delegate: ProfileHeaderDelegate?
     
@@ -143,8 +143,7 @@ extension ProfileHeader {
         followersLabel.isUserInteractionEnabled = true
         followersLabel.addGestureRecognizer(followersTap)
         
-        // underline View
-        underlineView.backgroundColor = .twitterBlue
+       
     }
     
     
@@ -166,7 +165,6 @@ extension ProfileHeader {
         addSubview(followStackView)
         
         addSubview(filterBar)
-        addSubview(underlineView)
         
         // backButton
         backButton.anchor(top: topAnchor, left: leftAnchor, paddingTop: 42, paddingLeft: 16)
@@ -194,13 +192,8 @@ extension ProfileHeader {
         // filterBar
         filterBar.anchor(left: leftAnchor, bottom: bottomAnchor, right:  rightAnchor, height: 50)
         
-        // underline View
-        underlineView.anchor(left: leftAnchor,  bottom: bottomAnchor,
-                             width: frame.width / 3, height: 2)
-        
     }
 }
-
 
 
 // MARK: - Actions
@@ -228,18 +221,9 @@ extension ProfileHeader {
 
 extension ProfileHeader: ProfileFilterViewDelegate {
     
-    func filterView(_ view: ProfileFilterView, didSelect indexpath: IndexPath) {
+    func filterView(_ view: ProfileFilterView, didSelect index: Int) {
         
-        
-        
-        guard let cell = view.collectionView.cellForItem(at: indexpath) as? ProfileFilterCell else { return }
-        
-        let xPosition = cell.frame.origin.x
-        UIView.animate(withDuration: 0.3) {
-            self.underlineView.frame.origin.x = xPosition
-        }
-        
+        guard let filter = ProfileFilterOptions(rawValue: index) else { return }
+        delegate?.didSelect(filter: filter)
     }
-    
-    
 }
