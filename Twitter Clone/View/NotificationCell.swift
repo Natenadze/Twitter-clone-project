@@ -9,6 +9,7 @@ import UIKit
 
 protocol NotificationCellDelegate: AnyObject {
     func didTapProfileImage(_ cell: NotificationCell)
+    func didTapFollow(_ cell: NotificationCell)
 }
 
 class NotificationCell: UITableViewCell {
@@ -23,6 +24,18 @@ class NotificationCell: UITableViewCell {
     var notification: Notification? {
         didSet { configure() }
     }
+    
+    private lazy var followButton: UIButton = {
+        let  button = UIButton(type: .system)
+        button.setTitle("Loading", for: .normal)
+        button.setTitleColor(.twitterBlue, for: .normal)
+        button.backgroundColor = .white
+        button.layer.borderColor = UIColor.twitterBlue.cgColor
+        button.layer.borderWidth = 2
+        button.addTarget(self, action: #selector(handleFollowTapped), for: .touchUpInside)
+        button.layer.cornerRadius = 32 / 2
+        return button
+    }()
     
     
     // MARK: - Init
@@ -46,7 +59,8 @@ class NotificationCell: UITableViewCell {
         // update properties
         profileImageView.sd_setImage(with: viewModel.profileImageUrl)
         notificationLabel.attributedText = viewModel.notifText
-        
+        followButton.isHidden = viewModel.shouldHideFollowButton
+        followButton.setTitle(viewModel.followButtonText, for: .normal)
     }
     
 }
@@ -88,6 +102,13 @@ extension NotificationCell {
          */
         contentView.addSubview(stackView)
         
+        addSubview(followButton)
+        
+        // follow button
+        followButton.centerY(inView: self)
+        followButton.setDimensions(width: 85, height: 32)
+        followButton.anchor(right: rightAnchor, paddingRight: 12)
+        
         // image
         profileImageView.setDimensions(width: 40, height: 40)
         
@@ -100,7 +121,13 @@ extension NotificationCell {
 
 // MARK: - Actions
 extension NotificationCell {
+    
     @objc func handleProfileImageTapped() {
         delegate?.didTapProfileImage(self)
     }
+    
+    @objc func handleFollowTapped() {
+        delegate?.didTapFollow(self)
+    }
+    
 }
