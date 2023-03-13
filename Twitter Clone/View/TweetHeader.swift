@@ -37,6 +37,7 @@ class TweetHeader: UICollectionReusableView {
     
     
     private let actionStackView = UIStackView()
+    
     private lazy var commentButton: UIButton = {
         let button = createButton(withImageName: "comment", target: self, action: #selector(handleCommentTapped))
         return button

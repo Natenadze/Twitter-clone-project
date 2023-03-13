@@ -21,11 +21,17 @@ class TweetController: UICollectionViewController {
     
     private var actionSheetLauncher: ActionSheetLauncher!
     
-    // MARK: - viewDidLoad
+    // MARK: - lifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         fetchReplies()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
     }
     
     // MARK: - Init

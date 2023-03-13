@@ -58,19 +58,23 @@ class FeedController: UICollectionViewController {
     
     // API
     func fetchTweets() {
+        collectionView.refreshControl?.beginRefreshing()
         TweetService.shared.fetchTweets { tweets in
-            self.tweets = tweets
-            self.checkIfUserLikesTweets(tweets)
+            self.tweets = tweets.sorted(by: { $0.timestamp > $1.timestamp })
+            self.checkIfUserLikesTweets()
+            self.collectionView.refreshControl?.endRefreshing()
         }
     }
     
     // API Helper
-    func checkIfUserLikesTweets(_ tweets: [Tweet]) {
-        for (index, tweet) in tweets.enumerated() {
+    func checkIfUserLikesTweets() {
+        self.tweets.forEach { tweet in
             TweetService.shared.checkIfUserLikesTweet(tweet) { didLike in
                 guard didLike == true else { return }
                 
-                self.tweets[index].didLike = true
+                if let index = self.tweets.firstIndex(where: {$0.tweetID == tweet.tweetID}) {
+                    self.tweets[index].didLike = true
+                }
             }
         }
     }
@@ -84,6 +88,10 @@ extension FeedController {
     
     func style() {
         view.backgroundColor = .secondarySystemBackground
+        
+        let refreshControl = UIRefreshControl()
+        collectionView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         
         // profile Image
         profileImageView.layer.cornerRadius = 16
@@ -181,6 +189,10 @@ extension FeedController: TweetCellDelegate {
         let vc = ProfileController(user: user)
         navigationController?.pushViewController(vc, animated: true)
         
+    }
+    
+    @objc func handleRefresh() {
+        fetchTweets()
     }
     
 }
