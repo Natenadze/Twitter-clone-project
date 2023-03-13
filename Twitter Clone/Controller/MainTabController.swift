@@ -25,6 +25,8 @@ class MainTabController: UITabBarController {
     let actionButton = UIButton(type: .system)
     
     
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        logUserOut()
@@ -71,13 +73,11 @@ class MainTabController: UITabBarController {
     
     // Function for embedding in Nav Bar
     func templateNavController(image: UIImage?, rootVC: UIViewController) -> UINavigationController {
-        
         let nav = UINavigationController(rootViewController: rootVC)
         nav.tabBarItem.image = image
-        nav.setStatusBar()
+        nav.setStatusBar(withColor: .white)
         return nav
     }
-    
     
 }
 
@@ -149,7 +149,7 @@ extension MainTabController {
         let controller = UploadTweetController(user: user, config: .tweet)
         let nav = UINavigationController(rootViewController: controller)
         nav.modalPresentationStyle = .fullScreen
-        nav.setStatusBar()
+        nav.setStatusBar(withColor: .white)
         present(nav, animated: true)
     }
 }

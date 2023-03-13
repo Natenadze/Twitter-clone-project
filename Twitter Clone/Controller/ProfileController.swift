@@ -32,7 +32,7 @@ class ProfileController: UICollectionViewController {
         }
     }
     
-    // MARK: - Override funcs
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -180,7 +180,13 @@ extension ProfileController: ProfileHeaderDelegate {
     func HandleEditProfileFollow(_ header: ProfileHeader) {
         
         if user.isCurrentUser {
-            // show edit profile controller
+            let controller = EditProfileController(user: user)
+//            navigationController?.pushViewController(controller, animated: true)
+            let nav = UINavigationController(rootViewController: controller)
+            nav.modalPresentationStyle = .fullScreen
+            nav.setStatusBar(withColor: .twitterBlue)
+//            nav.setStatusBar2()
+            present(nav, animated: true)
             return
         }
         
@@ -206,3 +212,4 @@ extension ProfileController: ProfileHeaderDelegate {
     
     
 }
+
