@@ -157,7 +157,7 @@ extension ProfileController: UICollectionViewDelegateFlowLayout {
         let viewModel = TweetViewModel(tweet: currentDataSource[indexPath.row])
         let height = viewModel.size(forWidth: view.frame.width).height
         
-        return CGSize(width: view.frame.width, height: height + 70)
+        return CGSize(width: view.frame.width, height: height + 88)
     }
 }
 

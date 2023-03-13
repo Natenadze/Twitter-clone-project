@@ -9,8 +9,19 @@ import UIKit
 
 struct TweetViewModel {
     
+    // MARK: - Properties
+    
     let tweet: Tweet
     let user: User
+    // tweet is reply ? true : false
+    var shouldHideReplyLabel: Bool {
+        !tweet.isReply
+    }
+    
+    var replyText:String? {
+        guard let name = tweet.replyingTo else { return nil}
+       return  "↳ replying to @\(name)"
+    }
     
     var timestamp: String? {
         let formatter = DateComponentsFormatter()
@@ -64,6 +75,8 @@ struct TweetViewModel {
         let imageName = tweet.didLike ? "like_filled" : "like"
         return UIImage(named: imageName)!
     }
+    
+    // MARK: - LifeCycle
     
     init(tweet: Tweet) {
         self.tweet = tweet

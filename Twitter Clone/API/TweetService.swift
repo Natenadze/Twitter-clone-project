@@ -17,7 +17,7 @@ struct TweetService {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
         // timestamp is a number of seconds
-        let values: [String : Any] = ["uid": uid,
+        var values: [String : Any] = ["uid": uid,
                                       "timestamp": Int(NSDate().timeIntervalSince1970),
                                       "likes": 0, "retweets": 0, "caption": caption]
         
@@ -35,6 +35,8 @@ struct TweetService {
             }
             //
         case .reply(let tweet):
+            // gives us username of person who's tweet we are replying
+            values["replyingTo"] = tweet.user.username
             // upload reply. if type is reply
             REF_TWEET_REPLIES.child(tweet.tweetID).childByAutoId()
                 .updateChildValues(values) { err, ref in
@@ -96,7 +98,6 @@ struct TweetService {
         // get not only current user uid but any user uid
         REF_USER_TWEETS.child(user.uid).observe(.childAdded) { snapshot in
             let tweetID = snapshot.key
-            print(snapshot.value!)  // აქ dictionary მოაქვს ჩვეულებრივ
             
             // refactored code
             self.fetchSingleTweet(withTweetID: tweetID) { tweet in

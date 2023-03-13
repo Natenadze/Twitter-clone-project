@@ -27,7 +27,9 @@ class TweetCell: UICollectionViewCell {
     
     weak var delegate: TweetCellDelegate?
     
-    private let stackview = UIStackView()
+    private let mainStack = UIStackView()
+    private let captionStackview = UIStackView()
+    private let imageCaptionStack = UIStackView()
     private let profileImageView = UIImageView()
     private let captionLabel = UILabel()
     private let infoLabel = UILabel()
@@ -37,6 +39,7 @@ class TweetCell: UICollectionViewCell {
     private let retweetButton = UIButton(type: .system)
     private let likeButton    = UIButton(type: .system)
     private let shareButton   = UIButton(type: .system)
+    private let replyLabel = UILabel()
     
     private let underlineView = UIView()
     
@@ -62,6 +65,8 @@ class TweetCell: UICollectionViewCell {
         profileImageView.sd_setImage(with: viewModel.profileImageUrl)
         likeButton.tintColor = viewModel.likeButtonTintColor
         likeButton.setImage(viewModel.likeButtonImage, for: .normal)
+        replyLabel.isHidden = viewModel.shouldHideReplyLabel
+        replyLabel.text = viewModel.replyText
     }
 }
 
@@ -69,6 +74,23 @@ class TweetCell: UICollectionViewCell {
 extension TweetCell {
     
     func style() {
+        
+        // mainStack
+        mainStack.axis = .vertical
+        mainStack.spacing = 8
+        
+        // stackview
+        captionStackview.axis = .vertical
+        captionStackview.distribution = .fillProportionally
+        
+        // action  StackView
+        actionStackView.distribution = .fillEqually
+        actionStackView.spacing = 72
+        
+        // imageCaption StackView
+        imageCaptionStack.distribution = .fillProportionally
+        imageCaptionStack.spacing = 12
+        imageCaptionStack.alignment = .leading
         
         
         // profile Image
@@ -85,22 +107,12 @@ extension TweetCell {
         // caption Label
         captionLabel.font = UIFont.systemFont(ofSize: 14)
         captionLabel.numberOfLines = 0
-        captionLabel.text = "Some test caption"
         captionLabel.minimumScaleFactor = 13
         
         // infoLabel
         infoLabel.font = UIFont.systemFont(ofSize: 14)
         
-        // stackview
-        stackview.axis = .vertical
-        stackview.distribution = .fillProportionally
-        
-        // infoLabel
-        infoLabel.text = "Mark Jija @venom"
-        
-        // action  StackView
-        actionStackView.distribution = .fillEqually
-        actionStackView.spacing = 72
+      
         
         // comment Btn
         commentButton.setImage(UIImage(named: "comment"), for: .normal)
@@ -122,6 +134,12 @@ extension TweetCell {
         shareButton.tintColor = .darkGray
         shareButton.addTarget(self, action: #selector(handleShareTapped), for: .touchUpInside)
         
+        // reply label
+        replyLabel.textColor = .lightGray
+        replyLabel.font = UIFont.systemFont(ofSize: 12)
+        
+        
+
         
         //underlineView
         underlineView.backgroundColor = .systemGroupedBackground
@@ -130,25 +148,30 @@ extension TweetCell {
     // MARK: - layout
     
     func layout() {
-        addSubview(profileImageView)
-        stackview.addArrangedSubview(infoLabel)
-        stackview.addArrangedSubview(captionLabel)
-        addSubview(stackview)
+//        addSubview(profileImageView)
+        captionStackview.addArrangedSubview(infoLabel)
+        captionStackview.addArrangedSubview(captionLabel)
+        
         actionStackView.addArrangedSubview(commentButton)
         actionStackView.addArrangedSubview(retweetButton)
         actionStackView.addArrangedSubview(likeButton)
         actionStackView.addArrangedSubview(shareButton)
         addSubview(actionStackView)
+        imageCaptionStack.addArrangedSubview(profileImageView)
+        imageCaptionStack.addArrangedSubview(captionStackview)
         addSubview(underlineView)
+        
+        // mainStack
+        mainStack.addArrangedSubview(replyLabel)
+        mainStack.addArrangedSubview(imageCaptionStack)
+        addSubview(mainStack)
+        
+        mainStack.anchor(top: topAnchor, left: leftAnchor,
+                         right: rightAnchor, paddingTop: 4, paddingLeft: 12, paddingRight: 12)
         
         // profileImage
         profileImageView.setDimensions(width: 48, height: 48)
-        profileImageView.anchor(top: topAnchor, left: leftAnchor,
-                                paddingTop: 8, paddingLeft: 8)
-        
-        // stackview
-        stackview.anchor(top: profileImageView.topAnchor, left: profileImageView.rightAnchor,
-                         right: rightAnchor, paddingLeft: 12, paddingRight: 12)
+
         
         // Comment Btn
         commentButton.setDimensions(width: 20, height: 20)
@@ -163,7 +186,9 @@ extension TweetCell {
         shareButton.setDimensions(width: 20, height: 20)
 //
         // action Stack
-        actionStackView.anchor(left: profileImageView.rightAnchor, bottom: underlineView.topAnchor, paddingBottom: 8)
+        actionStackView.centerX(inView: self)
+        actionStackView.anchor(bottom: bottomAnchor, paddingBottom: 8)
+       
         
         //underlineView
         underlineView.anchor(left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, height: 1)
