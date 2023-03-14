@@ -54,6 +54,10 @@ struct EditProfileVM {
         option != .bio
     }
     
+    var shouldHidePlaceholderLabel: Bool {
+        user.bio != nil
+    }
+    
     // MARK: - Init
     
     init(user: User, option: EditProfileOptions) {

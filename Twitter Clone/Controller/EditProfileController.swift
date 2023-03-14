@@ -28,6 +28,10 @@ class EditProfileController: UITableViewController {
     }
     
     private var userInfoChanged = false
+    private var  imageChanged: Bool {
+        selectedImage != nil
+    }
+    
     weak var delegate: EditProfileControllerDelegate?
     
     // MARK: - Lifecycle
@@ -54,10 +58,35 @@ class EditProfileController: UITableViewController {
     // MARK: - API
     
     func updateUserData() {
-        UserService.shared.saveUserData(user: user) { err, ref in
+        if imageChanged && !userInfoChanged {
+            updateProfileImage()
+        }
+        
+        if !imageChanged && userInfoChanged {
+            UserService.shared.saveUserData(user: user) { err, ref in
+                self.delegate?.controller(self, wantsToUpdate: self.user)
+            }
+        }
+        
+        if imageChanged && userInfoChanged {
+            UserService.shared.saveUserData(user: user) { err, ref in
+                self.updateProfileImage()
+            }
+        }
+        
+       
+    }
+    
+    // MARK: - Helpers
+    
+    func updateProfileImage() {
+        guard let selectedImage else { return }
+        UserService.shared.updateProfileImage(image: selectedImage) { profileImageUrl in
+            self.user.profileImageUrl = profileImageUrl
             self.delegate?.controller(self, wantsToUpdate: self.user)
         }
     }
+    
     
 }
 
@@ -69,7 +98,6 @@ extension EditProfileController {
         navigationItem.title = "Edit Profile"
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(handleCancel))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(handleDone))
-        navigationItem.rightBarButtonItem?.isEnabled = false
         
         // tableView
         tableView.tableHeaderView = headerView
@@ -117,18 +145,7 @@ extension EditProfileController {
     }
 }
 
-// MARK: - Actions
 
-extension EditProfileController {
-    
-    @objc func handleCancel() {
-        dismiss(animated: true)
-    }
-    
-    @objc func handleDone() {
-        updateUserData()
-    }
-}
 
 // MARK: - Delegate Conformance
 
@@ -167,5 +184,21 @@ extension EditProfileController: UIImagePickerControllerDelegate, UINavigationCo
         guard let image = info[.editedImage] as? UIImage else { return }
         self.selectedImage = image
         dismiss(animated: true)
+    }
+}
+
+// MARK: - Actions
+
+extension EditProfileController {
+    
+    @objc func handleCancel() {
+        dismiss(animated: true)
+    }
+    
+    @objc func handleDone() {
+        view.endEditing(true)
+        // if nothin has changed in edit profile, we dont call the updateUserData func
+        guard imageChanged || userInfoChanged else { return }
+        updateUserData()
     }
 }

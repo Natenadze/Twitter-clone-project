@@ -5,7 +5,7 @@
 //  Created by Davit Natenadze on 28.02.23.
 //
 
-import Foundation
+import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
@@ -78,6 +78,27 @@ struct UserService {
                 
                 let stats = UserRelationStats(followers: followers, following: following)
                 completion(stats)
+            }
+        }
+    }
+    
+    // update Profile Image to Firebase
+    func updateProfileImage(image: UIImage, completion: @escaping(URL?) -> Void) {
+        // convert image to jpegData
+        guard let imageData = image.jpegData(compressionQuality: 0.3) else { return }
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let filename = NSUUID().uuidString
+        let ref = STORAGE_PROFILE_IMAGES.child(filename)
+        
+        ref.putData(imageData) { meta, err in
+            // get image Download Url
+            ref.downloadURL { url, err in
+                guard let profileImageUrl = url?.absoluteString else { return }
+                let values = ["profileImageUrl": profileImageUrl]
+                
+                REF_USERS.child(uid).updateChildValues(values) { err, ref in
+                    completion(url)
+                }
             }
         }
     }
