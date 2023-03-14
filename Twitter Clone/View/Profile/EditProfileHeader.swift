@@ -16,7 +16,7 @@ class EditProfileHeader: UIView {
     // MARK: - Properties
     private let user: User
     
-    private let profileImageView = UIImageView()
+    let profileImageView = UIImageView()
     private let changePhotoButton = UIButton()
     
     weak var delegate: EditProfileHeaderDelegate?

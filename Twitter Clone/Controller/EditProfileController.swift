@@ -8,12 +8,27 @@
 
 import UIKit
 
+private let reuseIdentifier = "EditProfileCell"
+
+protocol EditProfileControllerDelegate: AnyObject {
+    func controller(_ controller: EditProfileController, wantsToUpdate user: User)
+}
+
+
 class EditProfileController: UITableViewController {
     
     // MARK: - Properties
-    private let user: User
+    private var user: User
     // lazy var, because it needs to wait for user to be initialized
     private lazy var headerView = EditProfileHeader(user: user)
+    
+    private let imagePicker = UIImagePickerController()
+    private var selectedImage: UIImage? {
+        didSet { headerView.profileImageView.image = selectedImage }
+    }
+    
+    private var userInfoChanged = false
+    weak var delegate: EditProfileControllerDelegate?
     
     // MARK: - Lifecycle
     
@@ -36,6 +51,13 @@ class EditProfileController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
    
+    // MARK: - API
+    
+    func updateUserData() {
+        UserService.shared.saveUserData(user: user) { err, ref in
+            self.delegate?.controller(self, wantsToUpdate: self.user)
+        }
+    }
     
 }
 
@@ -51,6 +73,11 @@ extension EditProfileController {
         
         // tableView
         tableView.tableHeaderView = headerView
+        tableView.register(EditProfileCell.self, forCellReuseIdentifier: reuseIdentifier)
+        
+        // imagepicker
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
         
         
     }
@@ -63,6 +90,33 @@ extension EditProfileController {
     }
 }
 
+// MARK: - TableView Delegate / Datasource
+
+extension EditProfileController {
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        EditProfileOptions.allCases.count  // 3
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! EditProfileCell
+        cell.delegate = self
+        guard let option = EditProfileOptions(rawValue: indexPath.row) else { return cell }
+        cell.viewModel = EditProfileVM(user: user, option: option)
+        
+        return cell
+    }
+    
+    // Row Height
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        guard let option = EditProfileOptions(rawValue: indexPath.row) else { return 0 }
+
+        // giving different height to cells
+        return option == .bio ? 100 : 48
+    }
+}
+
 // MARK: - Actions
 
 extension EditProfileController {
@@ -72,7 +126,7 @@ extension EditProfileController {
     }
     
     @objc func handleDone() {
-        dismiss(animated: true)
+        updateUserData()
     }
 }
 
@@ -80,8 +134,38 @@ extension EditProfileController {
 
 extension EditProfileController: EditProfileHeaderDelegate {
     func didTapChangeProfilePhoto() {
-        print("change photo")
+        present(imagePicker, animated: true)
     }
     
-    
+}
+
+extension EditProfileController: EditProfileCellDelegate {
+    func updateUserInfo(_ cell: EditProfileCell) {
+        guard let viewModel = cell.viewModel else { return }
+        userInfoChanged = true
+        navigationItem.rightBarButtonItem?.isEnabled = true
+        
+        switch viewModel.option {
+            
+        case .fullname:
+            guard let fullName = cell.infoTextField.text else { return }
+            user.fullname = fullName
+        case .username:
+            guard let userName = cell.infoTextField.text else { return }
+            user.fullname = userName
+        case .bio:
+            user.bio = cell.bioTextView.text
+        }
+    }
+}
+
+// MARK: - Image Picker Delegate
+
+extension EditProfileController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        guard let image = info[.editedImage] as? UIImage else { return }
+        self.selectedImage = image
+        dismiss(animated: true)
+    }
 }

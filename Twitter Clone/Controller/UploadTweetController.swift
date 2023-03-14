@@ -19,7 +19,7 @@ class UploadTweetController: UIViewController {
     private lazy var viewModel = UploadTweetViewModel(config: config)
     
     private let imageCaptionStack = UIStackView()
-    private let captionTextview = CaptionTextView()
+    private let captionTextview = InputTextView()
     private let profileImage = UIImageView()
     
     private let mainStackView = UIStackView()

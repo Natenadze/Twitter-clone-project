@@ -93,14 +93,12 @@ extension MainTabController {
     
     func authenticateUserAndConfigureUI() {
         if Auth.auth().currentUser == nil {
-            print("no user")
             DispatchQueue.main.async {
                 let nav = UINavigationController(rootViewController: LoginController())
                 nav.modalPresentationStyle = .overFullScreen
                 self.present(nav, animated: true)
             }
         }else {
-            print("yes user")
             style()
             layout()
             configureViewControllers()

@@ -53,11 +53,11 @@ struct TweetService {
         
         REF_USER_FOLLOWING.child(currentUid).observe(.childAdded) { snapshot in
             let followingUid = snapshot.key
-            
+
             // tweets of the people we follow
             REF_USER_TWEETS.child(followingUid).observe(.childAdded) { snapshot in
                 let tweetID = snapshot.key
-                
+
                 fetchSingleTweet(withTweetID: tweetID) { tweet in
                     tweetsArray.append(tweet)
                     completion(tweetsArray)
@@ -67,7 +67,7 @@ struct TweetService {
         // our tweets
         REF_USER_TWEETS.child(currentUid).observe(.childAdded) { snapshot in
             let tweetID = snapshot.key
-            
+
             fetchSingleTweet(withTweetID: tweetID) { tweet in
                 tweetsArray.append(tweet)
                 completion(tweetsArray)
