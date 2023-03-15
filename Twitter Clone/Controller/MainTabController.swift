@@ -29,7 +29,6 @@ class MainTabController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        logUserOut()
         view.backgroundColor = .twitterBlue // prevent black screen visibility at the start
         authenticateUserAndConfigureUI()
     }
@@ -106,9 +105,6 @@ extension MainTabController {
         }
     }
     
-    func logUserOut() {
-        try? Auth.auth().signOut()
-    }
 }
 
 // MARK: - Style & Layout

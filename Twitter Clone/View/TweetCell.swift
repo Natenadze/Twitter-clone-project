@@ -37,10 +37,12 @@ class TweetCell: UICollectionViewCell {
     private let infoLabel = UILabel()
     
     private let actionStackView = UIStackView()
+    
     private let commentButton = UIButton(type: .system)
     private let retweetButton = UIButton(type: .system)
     private let likeButton    = UIButton(type: .system)
     private let shareButton   = UIButton(type: .system)
+    
     private let replyLabel = ActiveLabel()
     
     private let underlineView = UIView()

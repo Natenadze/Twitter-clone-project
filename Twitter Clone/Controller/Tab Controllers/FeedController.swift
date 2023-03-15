@@ -96,6 +96,10 @@ extension FeedController {
         // profile Image
         profileImageView.layer.cornerRadius = 16
         profileImageView.layer.masksToBounds = true
+        profileImageView.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleProfileImageTapped))
+        profileImageView.addGestureRecognizer(tap)
+        
         
         // iconImageView 
         iconImageView.contentMode = .scaleAspectFit
@@ -177,7 +181,7 @@ extension FeedController: TweetCellDelegate {
             // upload Notification
             // only when its like notif ( not unlike )
             guard !tweet.didLike else { return }
-            NotificationService.shared.uploadNotification(type: .like, tweet: tweet)
+            NotificationService.shared.uploadNotification(toUser: tweet.user, type: .like, tweetID: tweet.tweetID)
         }
     }
     
@@ -201,6 +205,13 @@ extension FeedController: TweetCellDelegate {
     
     @objc func handleRefresh() {
         fetchTweets()
+    }
+    
+    // Profile Image Tap
+    @objc func handleProfileImageTapped() {
+        guard let user else { return }
+        let controller = ProfileController(user: user)
+        navigationController?.pushViewController(controller, animated: true)
     }
     
 }

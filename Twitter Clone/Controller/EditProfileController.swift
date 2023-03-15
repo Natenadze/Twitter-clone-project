@@ -12,6 +12,7 @@ private let reuseIdentifier = "EditProfileCell"
 
 protocol EditProfileControllerDelegate: AnyObject {
     func controller(_ controller: EditProfileController, wantsToUpdate user: User)
+    func handleLogout()
 }
 
 
@@ -21,6 +22,7 @@ class EditProfileController: UITableViewController {
     private var user: User
     // lazy var, because it needs to wait for user to be initialized
     private lazy var headerView = EditProfileHeader(user: user)
+    private let footerView = EditProfileFooter()
     
     private let imagePicker = UIImagePickerController()
     private var selectedImage: UIImage? {
@@ -38,7 +40,7 @@ class EditProfileController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        headerView.delegate = self
+        
         style()
         layout()
         
@@ -100,6 +102,8 @@ extension EditProfileController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(handleDone))
         
         // tableView
+        headerView.delegate = self
+        footerView.delegate = self
         tableView.tableHeaderView = headerView
         tableView.register(EditProfileCell.self, forCellReuseIdentifier: reuseIdentifier)
         
@@ -111,10 +115,10 @@ extension EditProfileController {
     }
     
     func layout() {
-        
         // tableView
         headerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 180)
-        tableView.tableFooterView = UIView()
+        footerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
+        tableView.tableFooterView = footerView
     }
 }
 
@@ -154,6 +158,22 @@ extension EditProfileController: EditProfileHeaderDelegate {
         present(imagePicker, animated: true)
     }
     
+}
+
+extension EditProfileController: EditProfileFooterDelegate {
+    func handleLogout() {
+        let alert = UIAlertController(title: nil, message: "Are you sure you want to log out?", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { _ in
+            self.dismiss(animated: true) {
+                self.delegate?.handleLogout()
+            }
+            
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        present(alert, animated: true)
+    }
 }
 
 extension EditProfileController: EditProfileCellDelegate {

@@ -28,7 +28,7 @@ class UploadTweetController: UIViewController {
     private let replyLabel = ActiveLabel()
     
     
-    // MARK: - ViewDidLoad -
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,17 +48,32 @@ class UploadTweetController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Missed Code --------------------------------------------------------------------
+    // MARK: - API
+    
+    fileprivate func uploadMentionNotification(forCaption caption: String, tweetID: String?) {
+        guard caption.contains("@") else { return }
+        let words = caption.components(separatedBy: .whitespacesAndNewlines)
+        
+        words.forEach { word in
+            guard word.hasPrefix("@") else { return }
+            
+            var username = word.trimmingCharacters(in: .symbols)
+            username = username.trimmingCharacters(in: .punctuationCharacters)
+            
+            UserService.shared.fetchUser(withUsername: username) { mentionedUser in
+                NotificationService.shared.uploadNotification(toUser: mentionedUser, type: .mention, tweetID: tweetID)
+            }
+        }
+    }
+    // MARK: - missed Code  --------------------------------------------------------------------
     
     // MARK: - Helpers
     func setup() {
         // navigation bar
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(handleCancel))
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: actionButton)
-        
-        
     }
-    
-    
     
 }
 
@@ -146,6 +161,7 @@ extension UploadTweetController {
     
      @objc func handleUploadTweet() {
          guard let caption = captionTextview.text else { return }
+         
          TweetService.shared.uploadTweet(caption: caption, type: config) { error, ref in
              if let error {
                  print("DEBUG: failed to upload tweet with error: \(error.localizedDescription)")
@@ -154,7 +170,9 @@ extension UploadTweetController {
              // if reply == config
              // if we are in a reply configuration and we have access to the tweet
              if case .reply(let tweet) = self.config {
-                 NotificationService.shared.uploadNotification(type: .reply, tweet: tweet)
+                 NotificationService.shared.uploadNotification(toUser: tweet.user,
+                                                               type: .reply,
+                                                               tweetID: tweet.tweetID)
              }
              
              self.dismiss(animated: true)

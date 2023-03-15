@@ -45,6 +45,7 @@
 		5DC0F58729C0682F009F3A0E /* EditProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC0F58629C0682F009F3A0E /* EditProfileVM.swift */; };
 		5DC0F58929C068E8009F3A0E /* EditProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC0F58829C068E8009F3A0E /* EditProfileCell.swift */; };
 		5DC0F58C29C0FAC5009F3A0E /* ActiveLabel in Frameworks */ = {isa = PBXBuildFile; productRef = 5DC0F58B29C0FAC5009F3A0E /* ActiveLabel */; };
+		5DC0F58E29C1D793009F3A0E /* EditProfileFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC0F58D29C1D793009F3A0E /* EditProfileFooter.swift */; };
 		5DCD000029A6619E008D5FAF /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCDFFFF29A6619E008D5FAF /* MainTabController.swift */; };
 		5DCD000229A6639E008D5FAF /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD000129A6639E008D5FAF /* FeedController.swift */; };
 		5DCD000429A66466008D5FAF /* ExploreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD000329A66466008D5FAF /* ExploreController.swift */; };
@@ -95,6 +96,7 @@
 		5DC0F58429BFA314009F3A0E /* EditProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileHeader.swift; sourceTree = "<group>"; };
 		5DC0F58629C0682F009F3A0E /* EditProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVM.swift; sourceTree = "<group>"; };
 		5DC0F58829C068E8009F3A0E /* EditProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileCell.swift; sourceTree = "<group>"; };
+		5DC0F58D29C1D793009F3A0E /* EditProfileFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileFooter.swift; sourceTree = "<group>"; };
 		5DCD000129A6639E008D5FAF /* FeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
 		5DCD000329A66466008D5FAF /* ExploreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreController.swift; sourceTree = "<group>"; };
 		5DCD000729A6658C008D5FAF /* ConversationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsController.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				5DC0F56629B203E9009F3A0E /* ProfileFilterCell.swift */,
 				5DC0F58429BFA314009F3A0E /* EditProfileHeader.swift */,
 				5DC0F58829C068E8009F3A0E /* EditProfileCell.swift */,
+				5DC0F58D29C1D793009F3A0E /* EditProfileFooter.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				5DCD000029A6619E008D5FAF /* MainTabController.swift in Sources */,
 				5DC0F58729C0682F009F3A0E /* EditProfileVM.swift in Sources */,
 				5DCD000229A6639E008D5FAF /* FeedController.swift in Sources */,
+				5DC0F58E29C1D793009F3A0E /* EditProfileFooter.swift in Sources */,
 				5DCD001129A7AB92008D5FAF /* RegistrationController.swift in Sources */,
 				5DC0F57129B794F9009F3A0E /* UploadTweetViewModel.swift in Sources */,
 				5DC0F57329B8D924009F3A0E /* ActionSheetLauncher.swift in Sources */,

@@ -12,8 +12,9 @@ struct NotificationService {
     
     static let shared = NotificationService()
     
-    func uploadNotification(type: NotificationType, tweet: Tweet? = nil,
-                            user: User? = nil, tweetID: String? = nil) {
+    func uploadNotification(toUser user: User,
+                            type: NotificationType,
+                            tweetID: String? = nil) {
         
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
@@ -21,16 +22,13 @@ struct NotificationService {
                                      "uid": uid,
                                      "type": type.rawValue]
         // if we pass tweet into parameters, it means that notif is for a tweet like, and we will append tweetID to the dictionary
-        if let tweet {
-            values["tweetID"] = tweet.tweetID
+        if let tweetID {
+            values["tweetID"] = tweetID
             // tweet.user.uid -> we create notif for that user ( owner of the tweet )
-            REF_NOTIFICATIONS.child(tweet.user.uid).childByAutoId().updateChildValues(values)
-        } else {
-            if let user {
-                REF_NOTIFICATIONS.child(user.uid).childByAutoId().updateChildValues(values)
-            }
             
         }
+        REF_NOTIFICATIONS.child(user.uid).childByAutoId().updateChildValues(values)
+        
     }
     
     func fetchNotifications(completion: @escaping([Notification]) -> Void) {
