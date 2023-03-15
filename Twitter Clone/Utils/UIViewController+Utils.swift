@@ -14,10 +14,10 @@ extension UIViewController {
         navBarAppearance.configureWithOpaqueBackground()
 //        navBarAppearance.configureWithTransparentBackground() // to hide Navigation Bar Line
         navBarAppearance.backgroundColor = color
-        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.black]
         UINavigationBar.appearance().standardAppearance = navBarAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
-        UINavigationBar.appearance().tintColor = .white
+        UINavigationBar.appearance().tintColor = .twitterBlue
 
     }
     

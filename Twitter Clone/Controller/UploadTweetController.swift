@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ActiveLabel
 
 
 
@@ -24,7 +25,7 @@ class UploadTweetController: UIViewController {
     
     private let mainStackView = UIStackView()
     
-    private let replyLabel = UILabel()
+    private let replyLabel = ActiveLabel()
     
     
     // MARK: - ViewDidLoad -
@@ -34,6 +35,7 @@ class UploadTweetController: UIViewController {
         style()
         layout()
         setup()
+        configureMentionHandler()
     }
     
     init(user: User, config: UploadTweetConfiguration) {
@@ -99,6 +101,7 @@ extension UploadTweetController {
         replyLabel.textColor = .gray
         replyLabel.text = viewModel.replyText ?? ""
         replyLabel.isHidden = !viewModel.shouldShowReplyLabel
+        replyLabel.mentionColor = .twitterBlue  // @Mention
         
         
         
@@ -156,6 +159,13 @@ extension UploadTweetController {
              
              self.dismiss(animated: true)
          }
+    }
+    
+    // MARK: - ActionLabel package in action
+    func configureMentionHandler() {
+        replyLabel.handleMentionTap { mention in
+            print("DEBUG: mentioned user is \(mention)")
+        }
     }
     
 }

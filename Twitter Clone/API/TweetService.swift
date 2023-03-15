@@ -9,6 +9,7 @@ import Foundation
 import FirebaseDatabase
 import FirebaseAuth
 
+
 struct TweetService {
     
     static let shared = TweetService()

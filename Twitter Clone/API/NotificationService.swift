@@ -12,7 +12,9 @@ struct NotificationService {
     
     static let shared = NotificationService()
     
-    func uploadNotification(type: NotificationType, tweet: Tweet? = nil, user: User? = nil) {
+    func uploadNotification(type: NotificationType, tweet: Tweet? = nil,
+                            user: User? = nil, tweetID: String? = nil) {
+        
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
         var values: [String: Any] = ["timestamp": Int(NSDate().timeIntervalSince1970),

@@ -44,6 +44,7 @@
 		5DC0F58529BFA314009F3A0E /* EditProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC0F58429BFA314009F3A0E /* EditProfileHeader.swift */; };
 		5DC0F58729C0682F009F3A0E /* EditProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC0F58629C0682F009F3A0E /* EditProfileVM.swift */; };
 		5DC0F58929C068E8009F3A0E /* EditProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC0F58829C068E8009F3A0E /* EditProfileCell.swift */; };
+		5DC0F58C29C0FAC5009F3A0E /* ActiveLabel in Frameworks */ = {isa = PBXBuildFile; productRef = 5DC0F58B29C0FAC5009F3A0E /* ActiveLabel */; };
 		5DCD000029A6619E008D5FAF /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCDFFFF29A6619E008D5FAF /* MainTabController.swift */; };
 		5DCD000229A6639E008D5FAF /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD000129A6639E008D5FAF /* FeedController.swift */; };
 		5DCD000429A66466008D5FAF /* ExploreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD000329A66466008D5FAF /* ExploreController.swift */; };
@@ -118,6 +119,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5DC0F50029ADEF6D009F3A0E /* FirebaseDatabase in Frameworks */,
+				5DC0F58C29C0FAC5009F3A0E /* ActiveLabel in Frameworks */,
 				5DC0F50429ADEF6D009F3A0E /* FirebaseStorage in Frameworks */,
 				5DC0F4FE29ADEF6D009F3A0E /* FirebaseAuth in Frameworks */,
 				5DC0F50229ADEF6D009F3A0E /* FirebaseFirestore in Frameworks */,
@@ -309,6 +311,7 @@
 				5DC0F50129ADEF6D009F3A0E /* FirebaseFirestore */,
 				5DC0F50329ADEF6D009F3A0E /* FirebaseStorage */,
 				5DC0F52A29AE4BD7009F3A0E /* SDWebImage */,
+				5DC0F58B29C0FAC5009F3A0E /* ActiveLabel */,
 			);
 			productName = "Twitter Clone";
 			productReference = 5DCDFFE129A65FB4008D5FAF /* Twitter Clone.app */;
@@ -341,6 +344,7 @@
 			packageReferences = (
 				5DC0F4FC29ADEF6D009F3A0E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				5DC0F52929AE4BD7009F3A0E /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				5DC0F58A29C0FAC5009F3A0E /* XCRemoteSwiftPackageReference "ActiveLabel.swift" */,
 			);
 			productRefGroup = 5DCDFFE229A65FB4008D5FAF /* Products */;
 			projectDirPath = "";
@@ -653,6 +657,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		5DC0F58A29C0FAC5009F3A0E /* XCRemoteSwiftPackageReference "ActiveLabel.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/optonaut/ActiveLabel.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -680,6 +692,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5DC0F52929AE4BD7009F3A0E /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
+		};
+		5DC0F58B29C0FAC5009F3A0E /* ActiveLabel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5DC0F58A29C0FAC5009F3A0E /* XCRemoteSwiftPackageReference "ActiveLabel.swift" */;
+			productName = ActiveLabel;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -17,6 +17,7 @@ struct UserService {
     
     private init() {}
     
+    //
     func fetchUser(uid: String, completion: @escaping (User) -> Void) {
         
         REF_USERS.child(uid).observeSingleEvent(of: .value) { snapshot in
@@ -28,7 +29,7 @@ struct UserService {
             completion(user)
         }
     }
-    
+    //
     func fetchUser(completion: @escaping ([User]) -> Void) {
         var users = [User]()
         REF_USERS.observe(.childAdded) { snapshot in
@@ -113,4 +114,10 @@ struct UserService {
         REF_USERS.child(uid).updateChildValues(values, withCompletionBlock: completion)
     }
     
+    func fetchUser(withUsername username: String, completion: @escaping(User) -> Void) {
+        REF_USER_USERNAMES.child(username).observeSingleEvent(of: .value) { snapshot in
+            guard let uid = snapshot.value as? String else { return }
+            self.fetchUser(uid: uid, completion: completion)
+        }
+    }
 }

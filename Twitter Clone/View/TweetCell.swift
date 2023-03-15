@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import ActiveLabel
 
 // MARK: - Protocol
 protocol TweetCellDelegate: AnyObject {
     func handleProfileImageTapped(_ cell: TweetCell)
     func handleReplyTapped(_ cell: TweetCell)
     func handleLikeTapped(_ cell: TweetCell)
+    func handleFetchUser(withUsername username: String)
 }
 
 // MARK: - Class
@@ -31,7 +33,7 @@ class TweetCell: UICollectionViewCell {
     private let captionStackview = UIStackView()
     private let imageCaptionStack = UIStackView()
     private let profileImageView = UIImageView()
-    private let captionLabel = UILabel()
+    private let captionLabel = ActiveLabel()
     private let infoLabel = UILabel()
     
     private let actionStackView = UIStackView()
@@ -39,7 +41,7 @@ class TweetCell: UICollectionViewCell {
     private let retweetButton = UIButton(type: .system)
     private let likeButton    = UIButton(type: .system)
     private let shareButton   = UIButton(type: .system)
-    private let replyLabel = UILabel()
+    private let replyLabel = ActiveLabel()
     
     private let underlineView = UIView()
     
@@ -50,12 +52,14 @@ class TweetCell: UICollectionViewCell {
         super.init(frame: frame)
         style()
         layout()
-        
+        configureMentionHandler()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Configure functions
     
     func configure() {
         guard let tweet else { return }
@@ -67,6 +71,12 @@ class TweetCell: UICollectionViewCell {
         likeButton.setImage(viewModel.likeButtonImage, for: .normal)
         replyLabel.isHidden = viewModel.shouldHideReplyLabel
         replyLabel.text = viewModel.replyText
+    }
+    
+    func configureMentionHandler() {
+        captionLabel.handleMentionTap { mention in
+            self.delegate?.handleFetchUser(withUsername: mention)
+        }
     }
 }
 
@@ -108,6 +118,9 @@ extension TweetCell {
         captionLabel.font = UIFont.systemFont(ofSize: 14)
         captionLabel.numberOfLines = 0
         captionLabel.minimumScaleFactor = 13
+        captionLabel.mentionColor = .twitterBlue
+        captionLabel.hashtagColor = .twitterBlue
+        
         
         // infoLabel
         infoLabel.font = UIFont.systemFont(ofSize: 14)
@@ -137,9 +150,7 @@ extension TweetCell {
         // reply label
         replyLabel.textColor = .lightGray
         replyLabel.font = UIFont.systemFont(ofSize: 12)
-        
-        
-
+        replyLabel.mentionColor = .twitterBlue
         
         //underlineView
         underlineView.backgroundColor = .systemGroupedBackground

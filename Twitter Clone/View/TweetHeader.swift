@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import ActiveLabel
 
 protocol TweetHeaderDelegate: AnyObject {
     func showActionSheet()
+    func handleFetchUser(withUsername username: String)
 }
 
 class TweetHeader: UICollectionReusableView {
@@ -25,7 +27,7 @@ class TweetHeader: UICollectionReusableView {
     private let userDetailStack = UIStackView()
     private let fullNameLabel = UILabel()
     private let userNameLabel = UILabel()
-    private let captionLabel = UILabel()
+    private let captionLabel = ActiveLabel()
     private let dateLabel = UILabel()
     private var optionsButton = UIButton(type: .system)
     
@@ -64,6 +66,7 @@ class TweetHeader: UICollectionReusableView {
         
         style()
         layout()
+        configureMentionHandler()
     }
     
     required init?(coder: NSCoder) {
@@ -83,6 +86,8 @@ class TweetHeader: UICollectionReusableView {
         return button
     }
     
+    // MARK: - Configure Functions
+    
     func configure() {
         guard let tweet else { return }
         
@@ -98,6 +103,11 @@ class TweetHeader: UICollectionReusableView {
         likeButton.tintColor = viewModel.likeButtonTintColor
     }
     
+    func configureMentionHandler() {
+        captionLabel.handleMentionTap { mention in
+            self.delegate?.handleFetchUser(withUsername: mention)
+        }
+    }
 }
 
 
@@ -137,6 +147,8 @@ extension TweetHeader {
         // caption Label
         captionLabel.font = UIFont.systemFont(ofSize: 20)
         captionLabel.numberOfLines = 0
+        captionLabel.mentionColor = .twitterBlue
+        captionLabel.hashtagColor = .twitterBlue
         
         // dateLabel
         dateLabel.textColor = .lightGray
