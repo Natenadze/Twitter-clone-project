@@ -11,7 +11,7 @@ private let reuseIdentifier = "NotificationCell"
 
 class NotificationsController: UITableViewController {
     
-  // MARK: - Properties
+    // MARK: - Properties
     
     
     
@@ -38,19 +38,32 @@ class NotificationsController: UITableViewController {
         NotificationService.shared.fetchNotifications { notif in
             self.notifications = notif
             self.refreshControl?.endRefreshing()
-            // check if user is followed
-            for (index, notification) in notif.enumerated() {
-                if case .follow = notification.type {
-                    let user = notification.user
-                    
-                    UserService.shared.checkIfUserIsFollowed(uid: user.uid) { isFollowed in
-                        self.notifications[index].user.isFollowed = isFollowed
-                    }
+            self.checkIfUserIsFollowed(notifications: notif)
+        }
+    }
+    
+    func checkIfUserIsFollowed(notifications: [Notification]) {
+        guard !notifications.isEmpty else { return }
+        
+        notifications.forEach { notification in
+            /*
+             guard is same as:
+             if case .follow = notification.type {  }
+             */
+            guard case .follow = notification.type else { return }
+            
+            let user = notification.user
+            
+            UserService.shared.checkIfUserIsFollowed(uid: user.uid) { isFollowed in
+                
+                if let index = self.notifications.firstIndex(where: { $0.user.uid == notification.user.uid}) {
+                    self.notifications[index].user.isFollowed = isFollowed
                 }
             }
         }
+       
     }
- 
+    
 }
 
 // MARK: - Style & Layout
@@ -67,7 +80,7 @@ extension NotificationsController {
         navigationItem.title = "Notifications"
         tableView.register(NotificationCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.separatorStyle = .none
-    
+        
     }
     
     func layout() {
@@ -89,7 +102,7 @@ extension NotificationsController {
         return cell
     }
     
-   
+    
 }
 
 // MARK: - TableView Delegate

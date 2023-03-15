@@ -48,7 +48,7 @@
 		5DC0F58E29C1D793009F3A0E /* EditProfileFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC0F58D29C1D793009F3A0E /* EditProfileFooter.swift */; };
 		5DCD000029A6619E008D5FAF /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCDFFFF29A6619E008D5FAF /* MainTabController.swift */; };
 		5DCD000229A6639E008D5FAF /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD000129A6639E008D5FAF /* FeedController.swift */; };
-		5DCD000429A66466008D5FAF /* ExploreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD000329A66466008D5FAF /* ExploreController.swift */; };
+		5DCD000429A66466008D5FAF /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD000329A66466008D5FAF /* SearchController.swift */; };
 		5DCD000829A6658C008D5FAF /* ConversationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD000729A6658C008D5FAF /* ConversationsController.swift */; };
 		5DCD000A29A6661D008D5FAF /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD000929A6661D008D5FAF /* NotificationsController.swift */; };
 		5DCD000C29A78CCA008D5FAF /* Layout Helper Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD000B29A78CCA008D5FAF /* Layout Helper Extensions.swift */; };
@@ -98,7 +98,7 @@
 		5DC0F58829C068E8009F3A0E /* EditProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileCell.swift; sourceTree = "<group>"; };
 		5DC0F58D29C1D793009F3A0E /* EditProfileFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileFooter.swift; sourceTree = "<group>"; };
 		5DCD000129A6639E008D5FAF /* FeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
-		5DCD000329A66466008D5FAF /* ExploreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreController.swift; sourceTree = "<group>"; };
+		5DCD000329A66466008D5FAF /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		5DCD000729A6658C008D5FAF /* ConversationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsController.swift; sourceTree = "<group>"; };
 		5DCD000929A6661D008D5FAF /* NotificationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
 		5DCD000B29A78CCA008D5FAF /* Layout Helper Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Layout Helper Extensions.swift"; sourceTree = "<group>"; };
@@ -136,7 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				5DCD000129A6639E008D5FAF /* FeedController.swift */,
-				5DCD000329A66466008D5FAF /* ExploreController.swift */,
+				5DCD000329A66466008D5FAF /* SearchController.swift */,
 				5DCD000929A6661D008D5FAF /* NotificationsController.swift */,
 				5DCD000729A6658C008D5FAF /* ConversationsController.swift */,
 			);
@@ -385,7 +385,7 @@
 				5DC0F57C29BC99DF009F3A0E /* NotificationService.swift in Sources */,
 				5DCDFFE529A65FB4008D5FAF /* AppDelegate.swift in Sources */,
 				5DCD001829A7BFBB008D5FAF /* Utilities.swift in Sources */,
-				5DCD000429A66466008D5FAF /* ExploreController.swift in Sources */,
+				5DCD000429A66466008D5FAF /* SearchController.swift in Sources */,
 				5DC0F58929C068E8009F3A0E /* EditProfileCell.swift in Sources */,
 				5DC0F58229BF60AF009F3A0E /* EditProfileController.swift in Sources */,
 				5DC0F57629BB3EAB009F3A0E /* ActionSheetCell.swift in Sources */,

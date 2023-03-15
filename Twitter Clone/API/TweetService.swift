@@ -32,7 +32,9 @@ struct TweetService {
             REF_TWEETS.childByAutoId().updateChildValues(values) { error, ref in
                 // update user-tweet structure, after tweet upload completes
                 guard let tweetID = ref.key else { return }
-                REF_USER_TWEETS.child(uid).updateChildValues([tweetID: 1], withCompletionBlock: completion)
+                REF_USER_TWEETS.child(uid).updateChildValues([tweetID: 1]) { err, ref in
+                    completion(err, ref)
+                }
             }
             //
         case .reply(let tweet):
@@ -59,7 +61,7 @@ struct TweetService {
             REF_USER_TWEETS.child(followingUid).observe(.childAdded) { snapshot in
                 let tweetID = snapshot.key
 
-                fetchSingleTweet(withTweetID: tweetID) { tweet in
+                self.fetchSingleTweet(withTweetID: tweetID) { tweet in
                     tweetsArray.append(tweet)
                     completion(tweetsArray)
                 }
@@ -69,7 +71,7 @@ struct TweetService {
         REF_USER_TWEETS.child(currentUid).observe(.childAdded) { snapshot in
             let tweetID = snapshot.key
 
-            fetchSingleTweet(withTweetID: tweetID) { tweet in
+            self.fetchSingleTweet(withTweetID: tweetID) { tweet in
                 tweetsArray.append(tweet)
                 completion(tweetsArray)
             }

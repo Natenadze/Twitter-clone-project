@@ -9,9 +9,16 @@ import UIKit
 
 private let reuseIdentifier = "UserCell"
 
-class ExploreController: UITableViewController {
+enum SearchControllerConfig {
+    case messages
+    case userSearch
+}
+
+class SearchController: UITableViewController {
     
     // Properties
+    
+    private let config: SearchControllerConfig
     
     private var users = [User]() {
         didSet { tableView.reloadData() }
@@ -46,6 +53,15 @@ class ExploreController: UITableViewController {
         navigationController?.navigationBar.isHidden = false
     }
     
+    init(config: SearchControllerConfig) {
+        self.config = config
+        super.init(style: .plain)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - API
     func fetchUsers() {
         UserService.shared.fetchUser { users in
@@ -57,18 +73,22 @@ class ExploreController: UITableViewController {
     
     func setup () {
         tableView.register(UserCell.self, forCellReuseIdentifier: reuseIdentifier)
+        
+        if config == .messages {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(handleDismissal))
+        }
     }
   
 }
 
 // MARK: - Style & Layout
 
-extension ExploreController {
+extension SearchController {
     
     func style() {
         view.backgroundColor = .secondarySystemBackground
         
-        navigationItem.title = "Explore"
+        navigationItem.title = config == .messages ? "New Message" : "Explore"
         
         // SearchController
         searchController.obscuresBackgroundDuringPresentation = false
@@ -93,7 +113,7 @@ extension ExploreController {
 
 // MARK: - TableView Delegate
 
-extension ExploreController {
+extension SearchController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let user = isSearchMode ? filteredUsers[indexPath.row] : users[indexPath.row]
         let controller = ProfileController(user: user)
@@ -102,7 +122,7 @@ extension ExploreController {
 }
 
 // MARK: - TableView DataSource
-extension ExploreController {
+extension SearchController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // if user uses filter
         isSearchMode ? filteredUsers.count : users.count
@@ -119,7 +139,7 @@ extension ExploreController {
 }
 
 // MARK: - Update Search results
-extension ExploreController: UISearchResultsUpdating {
+extension SearchController: UISearchResultsUpdating {
     
     // to filter after searchController
     // this gets called on every letter written//deleted in searchBar
@@ -130,4 +150,12 @@ extension ExploreController: UISearchResultsUpdating {
     }
     
     
+}
+
+// MARK: - Actions
+
+extension SearchController {
+    @objc func handleDismissal() {
+        dismiss(animated: true)
+    }
 }

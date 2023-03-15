@@ -97,7 +97,7 @@ extension FeedController {
         profileImageView.layer.cornerRadius = 16
         profileImageView.layer.masksToBounds = true
         profileImageView.isUserInteractionEnabled = true
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleProfileImageTapped))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleUserProfileImageTapped))
         profileImageView.addGestureRecognizer(tap)
         
         
@@ -208,7 +208,7 @@ extension FeedController: TweetCellDelegate {
     }
     
     // Profile Image Tap
-    @objc func handleProfileImageTapped() {
+    @objc func handleUserProfileImageTapped() {
         guard let user else { return }
         let controller = ProfileController(user: user)
         navigationController?.pushViewController(controller, animated: true)

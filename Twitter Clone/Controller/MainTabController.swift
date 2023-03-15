@@ -8,6 +8,11 @@
 import UIKit
 import FirebaseAuth
 
+enum ActionButtonConfiguration {
+    case tweet
+    case message
+}
+
 class MainTabController: UITabBarController {
     
     // MARK: - Properties
@@ -23,6 +28,7 @@ class MainTabController: UITabBarController {
     }
     
     let actionButton = UIButton(type: .system)
+    private var buttonConfig: ActionButtonConfiguration = .tweet
     
     
     // MARK: - Lifecycle
@@ -31,6 +37,7 @@ class MainTabController: UITabBarController {
         super.viewDidLoad()
         view.backgroundColor = .twitterBlue // prevent black screen visibility at the start
         authenticateUserAndConfigureUI()
+        self.delegate = self  // sake of last extension
     }
     
     // MARK: - Making tab bar visible (stackoverflow solution)
@@ -49,7 +56,7 @@ class MainTabController: UITabBarController {
     func configureViewControllers() {
         
         let feed = FeedController(collectionViewLayout: UICollectionViewFlowLayout())
-        let explore = ExploreController()
+        let explore = SearchController(config: .userSearch)
         let notifications = NotificationsController()
         let conversations = ConversationsController()
         
@@ -97,7 +104,7 @@ extension MainTabController {
                 nav.modalPresentationStyle = .overFullScreen
                 self.present(nav, animated: true)
             }
-        }else {
+        } else {
             style()
             layout()
             configureViewControllers()
@@ -139,8 +146,16 @@ extension MainTabController {
 extension MainTabController {
     
     @objc func actionButtonTapped() {
-        guard let user else { return }
-        let controller = UploadTweetController(user: user, config: .tweet)
+        let controller: UIViewController
+        
+        switch buttonConfig {
+        case .tweet:
+            guard let user else { return }
+            controller = UploadTweetController(user: user, config: .tweet)
+        case .message:
+            controller = SearchController(config: .messages)
+        }
+        
         let nav = UINavigationController(rootViewController: controller)
         nav.modalPresentationStyle = .fullScreen
         nav.setStatusBar(withColor: .white)
@@ -149,5 +164,14 @@ extension MainTabController {
 }
 
 
-
-
+// to config Conversations tab bar
+extension MainTabController: UITabBarControllerDelegate {
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        let index = viewControllers?.firstIndex(of: viewController) // which tab is selected ( 0-3 range in our case)
+        
+        let image = index == 3 ? "mail" : "new_tweet"
+        actionButton.setImage(UIImage(named: image), for: .normal)
+        buttonConfig = index == 3 ? .message : .tweet  // which window to open
+    }
+}
